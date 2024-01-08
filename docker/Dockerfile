@@ -35,7 +35,7 @@ COPY --from=BuildStage /usr/local /usr/local
 COPY --from=BuildStage /etc/apk/repositories /etc/apk/repositories
 
 # Add non-root user (with home dir at /opal)
-RUN adduser -s /bin/bash -h /opal --disabled-password opal
+RUN adduser -D -h /opal -s /bin/bash opal
 WORKDIR /opal
 
 RUN apk add bash

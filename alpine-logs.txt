@@ -1,0 +1,606 @@
+ Container docker-broadcast_channel-1  Created
+ Container docker-opal_server-1  Recreate
+ Container docker-opal_server-1  Recreated
+ Container docker-opal_client-1  Recreate
+ Container docker-opal_client-1  Recreated
+Attaching to docker-broadcast_channel-1, docker-opal_client-1, docker-opal_server-1
+docker-broadcast_channel-1  | 
+docker-broadcast_channel-1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+docker-broadcast_channel-1  | 
+docker-broadcast_channel-1  | 2024-01-08 23:42:21.919 UTC [1] LOG:  starting PostgreSQL 16.1 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+docker-broadcast_channel-1  | 2024-01-08 23:42:21.919 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+docker-broadcast_channel-1  | 2024-01-08 23:42:21.919 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+docker-broadcast_channel-1  | 2024-01-08 23:42:21.921 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+docker-broadcast_channel-1  | 2024-01-08 23:42:21.925 UTC [24] LOG:  database system was shut down at 2024-01-08 23:41:14 UTC
+docker-broadcast_channel-1  | 2024-01-08 23:42:21.929 UTC [1] LOG:  database system is ready to accept connections
+docker-opal_server-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PrivateKeyTypes instead
+docker-opal_server-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_server-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PublicKeyTypes instead
+docker-opal_server-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_server-1        | [2024-01-08 23:42:22 +0000] [1] [INFO] Starting gunicorn 20.1.0
+docker-opal_server-1        | [2024-01-08 23:42:22 +0000] [1] [INFO] Listening at: http://0.0.0.0:7002 (1)
+docker-opal_server-1        | [2024-01-08 23:42:22 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+docker-opal_server-1        | 2024-01-08 23:42:22.427 | WARNING  | __config__:when_ready:19 - Finished pre loading scopes...
+docker-opal_server-1        | [2024-01-08 23:42:22 +0000] [9] [INFO] Booting worker with pid: 9
+docker-opal_server-1        | [32m2024-01-08T23:42:22.462557+0000[0m | 9 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.462761+0000[0m | 9 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.478382+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Started server process [9][0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.478485+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.478674+0000[0m | 9 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.478830+0000[0m | 9 | [34mopal_server.server                      [0m|[1m INFO  | leadership lock acquired, leader pid: 9[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.478910+0000[0m | 9 | [34mopal_common.topics.publisher            [0m|[1m INFO  | started broadcaster keepalive task: topic is '__broadcast_session_keepalive__', interval is 3600 seconds[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.479106+0000[0m | 9 | [34mopal_server.policy.watcher.factory      [0m|[1m INFO  | Policy repo will be cloned to: /opal/regoclone/opal_repo_clone[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.479203+0000[0m | 9 | [34mopal_server.policy.watcher.task         [0m|[1m INFO  | Launching policy watcher[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.479295+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.479725+0000[0m | 9 | [34mopal_server.data.data_update_publisher  [0m|[1m INFO  | [9] Starting Polling Updates[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.479858+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Listening for incoming events from broadcast channel (first listener started)[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.479930+0000[0m | 9 | [34mopal_server.policy.watcher.task         [0m|[1m INFO  | listening on webhook topic: 'webhook'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.480047+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '9b5f6ed17ca74b04b5e9e4dd41bb569c', 'subscriber_id': '58cd3e5917bb4fa582ae1a32cf611478', 'topic': 'webhook', 'callback': <bound method BasePolicyWatcherTask._on_webhook of <opal_server.policy.watcher.task.PolicyWatcherTask object at 0xffffa671ce30>>, 'notifier_id': None}[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.480961+0000[0m | 9 | [34mopal_common.git.repo_cloner             [0m|[1m INFO  | Cloning repo from 'https://github.com/permitio/opal-example-policy-repo' to '/opal/regoclone/opal_repo_clone' (branch: 'master')[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.481755+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Starting broadcaster listener[0m
+docker-opal_server-1        | [2024-01-08 23:42:22 +0000] [21] [INFO] Booting worker with pid: 21
+docker-opal_server-1        | [32m2024-01-08T23:42:22.531264+0000[0m | 21 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.531491+0000[0m | 21 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.547639+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | Started server process [21][0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.547726+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.547936+0000[0m | 21 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.548089+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [2024-01-08 23:42:22 +0000] [24] [INFO] Booting worker with pid: 24
+docker-opal_server-1        | [32m2024-01-08T23:42:22.584874+0000[0m | 24 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.585122+0000[0m | 24 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [2024-01-08 23:42:22 +0000] [25] [INFO] Booting worker with pid: 25
+docker-opal_server-1        | [32m2024-01-08T23:42:22.602155+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | Started server process [24][0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.602267+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.602486+0000[0m | 24 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.602638+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.619542+0000[0m | 25 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.619728+0000[0m | 25 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.635772+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | Started server process [25][0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.635883+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.636163+0000[0m | 25 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:22.636364+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:23.237422+0000[0m | 9 | [34mopal_common.git.repo_cloner             [0m|[1m INFO  | Clone succeeded[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:23.241468+0000[0m | 9 | [34mopal_common.sources.base_policy_source  [0m|[1m INFO  | Launching polling task, interval: 30 seconds[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:23.241743+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | Pulling changes from remote: 'origin'[0m
+docker-opal_client-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PrivateKeyTypes instead
+docker-opal_client-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_client-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PublicKeyTypes instead
+docker-opal_client-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_client-1        | [2024-01-08 23:42:23 +0000] [1] [INFO] Starting gunicorn 20.1.0
+docker-opal_client-1        | [2024-01-08 23:42:23 +0000] [1] [INFO] Listening at: http://0.0.0.0:7000 (1)
+docker-opal_client-1        | [2024-01-08 23:42:23 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+docker-opal_client-1        | [2024-01-08 23:42:23 +0000] [17] [INFO] Booting worker with pid: 17
+docker-opal_client-1        | [32m2024-01-08T23:42:23.542929+0000[0m | 17 | [34mopal_client.policy_store.opa_client     [0m|[1m INFO  | Authentication mode for policy store: PolicyStoreAuth.NONE[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.544017+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Loading FetcherProvider 'FastApiRpcFetchProvider' found at: <class 'opal_common.fetcher.providers.fastapi_rpc_fetch_provider.FastApiRpcFetchProvider'>[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.544087+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Loading FetcherProvider 'HttpFetchProvider' found at: <class 'opal_common.fetcher.providers.http_fetch_provider.HttpFetchProvider'>[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.544129+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Fetcher Register loaded[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.544269+0000[0m | 17 | [34mopal_client.callbacks.register          [0m|[1m INFO  | Callbacks register loaded[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.544387+0000[0m | 17 | [34mopal_client.client                      [0m|[1m INFO  | API authentication disabled (public encryption key was not provided)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.555012+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Started server process [17][0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.555077+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.555213+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Launching engine runner[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.555270+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.555581+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | /usr/local/lib/python3.12/site-packages/tenacity/__init__.py:462: RuntimeWarning: coroutine 'OpaRunner.pipe_logs' was never awaited
+docker-opal_client-1        |   self.outcome = None
+docker-opal_client-1        | RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+docker-opal_server-1        | [32m2024-01-08T23:42:23.632924+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | No new commits: HEAD is at 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:23.960728+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.566645+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine initial start callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.568371+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Launching data updater[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.568896+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Launching policy updater[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.569178+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Subscribing to topics: ['policy_data'][0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.569810+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Subscribing to topics: ['policy:.'][0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.570472+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying to connect to Pub/Sub server - ws://opal_server:7002/ws[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.571453+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying server - ws://opal_server:7002/ws[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.598698+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying to connect to Pub/Sub server - ws://opal_server:7002/ws[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.599416+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying server - ws://opal_server:7002/ws[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.617631+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | Listening for incoming events from broadcast channel (first listener started)[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.617632+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | Listening for incoming events from broadcast channel (first listener started)[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.642047+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '08f9908fc723430fbaed324419ddce19', 'subscriber_id': 'd44e8d2a8e3e499c89344fb1082613ec', 'topic': '__EventNotifier_ALL_TOPICS__', 'callback': <bound method EventBroadcaster.__broadcast_notifications__ of <fastapi_websocket_pubsub.event_broadcaster.EventBroadcaster object at 0xffffa68d3590>>, 'notifier_id': None}[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.642047+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '9c6db709821e4f6c8571536c779fbfe4', 'subscriber_id': '10e17e1d579e49539d6dace6c2b71574', 'topic': '__EventNotifier_ALL_TOPICS__', 'callback': <bound method EventBroadcaster.__broadcast_notifications__ of <fastapi_websocket_pubsub.event_broadcaster.EventBroadcaster object at 0xffffa68d3650>>, 'notifier_id': None}[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.642418+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | Starting broadcaster listener[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.642422+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | Starting broadcaster listener[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.644620+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | ('172.18.0.4', 44552) - "WebSocket /ws" [accepted][0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.644646+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | ('172.18.0.4', 44556) - "WebSocket /ws" [accepted][0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.644790+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | Client connected[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.644839+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | Client connected[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.645750+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | connection open[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.645752+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | connection open[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.674386+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '8f2cfa74790b4030aa9b24fbdad56362', 'subscriber_id': 'ed8f26f2208e4750a7a02f94e59fa06a', 'topic': 'policy_data', 'callback': <function RpcEventServerMethods.subscribe.<locals>.callback at 0xffffa64c3880>, 'notifier_id': None}[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.674394+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '3e71f2260de446d7a6a12e9b532ab09e', 'subscriber_id': '603024337a3f4c319f24896541b24b36', 'topic': 'policy:.', 'callback': <function RpcEventServerMethods.subscribe.<locals>.callback at 0xffffa64c37e0>, 'notifier_id': None}[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.675616+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Connected to server[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.675704+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: Initial load[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.675740+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.676241+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Connected to server[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.676372+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.676485+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.681442+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.681810+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44588 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.682598+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 5c129d73eaec4daeba5da90b93b87e2a[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.682736+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.682810+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.683276+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.683356+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.683370+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Connected to PubSub server ws://opal_server:7002/ws[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.683986+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.684135+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44592 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.684620+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.685178+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44572 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.685581+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.685760+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.691391+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Connected to PubSub server ws://opal_server:7002/ws[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.788855+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.914098+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.980604+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.981298+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.981412+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.981787+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.982252+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.982307+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.983809+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.984107+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44600 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.984877+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 546553250dae48d282122e7bc98be0ce[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.985011+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.985115+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.986327+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.986448+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44620 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.986883+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.987606+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.987696+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:24.989364+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44616 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.989773+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:24.989926+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.797590+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.798865+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.799129+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.799697+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.800777+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.801137+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.806616+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.807855+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44432 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.809946+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 59b872d2e0df480eb7ac109279d05d1e[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.810479+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.810746+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.814957+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.817678+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44452 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.819392+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.823266+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.823541+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.827705+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44436 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.828535+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.828977+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.930757+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.931688+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.931951+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.932425+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.933369+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.933615+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.938868+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.939949+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44458 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.942120+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 0c364425f3c042fd9982038286c98903[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.942556+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.942760+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.946793+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.947377+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44474 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.949002+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.951160+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.951483+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:25.955538+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44468 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.956644+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:25.957145+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:28.514106+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.534455+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.536219+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.536433+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.537426+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.539342+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.539599+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:29.545386+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:29.546482+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44488 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.549495+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 5444732aaee74bf6b021ec93a68ae9c3[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.550025+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.550258+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:29.554384+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:29.554934+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44496 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.556566+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:29.556959+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:29.557215+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:29.561963+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44490 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.563087+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:29.563447+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:32.957261+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.978371+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.979954+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.980194+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.981222+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.983252+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.983542+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:33.989875+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:33.995037+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44510 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.997666+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 1d8c64e8c3db48a390432dca02030bff[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.998179+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:33.998383+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:34.000964+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:34.001285+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:34.002485+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:34.003177+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44514 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:34.005039+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:34.006338+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:44498 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:34.007336+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:34.007668+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:38.592102+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.613110+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.614710+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.614973+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.615907+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.617722+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.618038+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:39.623852+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:39.624984+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:52228 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.627691+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 3edcee9b6d3545faaa2b6355d3a62f2d[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.628197+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.628437+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:39.632468+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:39.632984+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:52242 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.634590+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:39.636257+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:39.636551+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:39.641402+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:52214 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.642479+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:39.642919+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:48.222772+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.240230+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.241856+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.242075+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.243031+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.244755+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.245073+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:49.252596+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:49.253852+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:59682 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.256715+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: a253f30c2e314cec8da7460bddbc0940[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.257259+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.257496+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:49.262186+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:49.262719+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:59694 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.264882+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:49.267068+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:49.267379+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:49.272174+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:59678 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.273204+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:49.273604+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:53.527160+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:53.638751+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | Pulling changes from remote: 'origin'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.092880+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | No new commits: HEAD is at 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.547906+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.549041+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.549133+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.549675+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.550618+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.550703+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.553567+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.554109+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:59704 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.555643+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 84cfed1e5f7f4287b853b1e9432d9585[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.555882+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.556006+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.558335+0000[0m | 9 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.558749+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:59732 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.559581+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.561009+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.561159+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:54.563243+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:59718 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.563789+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:54.564013+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:55.605131+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.621420+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.623032+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.623282+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.624366+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.626352+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.626616+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:56.633570+0000[0m | 21 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:56.635061+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:53732 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.637864+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 0fd0dc68b8ca4dea97af0420ab75a192[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.638413+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.638659+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:56.642808+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:42:56.643396+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:53746 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.645135+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:56.644932+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:56.645186+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:42:56.649947+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:53730 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.651121+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:42:56.651567+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:02.363205+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.383160+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.384668+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.384805+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.385696+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.387297+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.387489+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:03.401831+0000[0m | 9 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:03.402834+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:53756 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:03.405438+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:03.405735+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.405752+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 515c6b2855e5413d81a446ed23c66d48[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.406217+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.406435+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:03.410393+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:03.410799+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:53766 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:03.411099+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:53750 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.412511+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.412915+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:03.414025+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:09.248942+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.269560+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.271291+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.271513+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.272516+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.274486+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.274749+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:10.280399+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:10.281571+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:55744 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.284289+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 96d4145e3f1849ad8183d9b9032d4a9b[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.284719+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.284919+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:10.289083+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:10.289631+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:55772 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:10.291023+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:10.291358+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.291323+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:10.296481+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:55760 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.297460+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:10.297843+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:16.248637+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:16.485587+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.267671+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.269352+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.269562+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.270602+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.272544+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.272801+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.279317+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.283381+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46770 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.286387+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 91e7c1b9c0694dbf8c44b60f4a01a117[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.286891+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.287158+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.291070+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.291429+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.291559+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.292020+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46776 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.293831+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.295166+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46768 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.296937+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.297580+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.497024+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.497635+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.497736+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.498009+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.498565+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.498707+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.502130+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.503025+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46790 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.504584+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 225916ae144a4a6b94b762cd5d2bd21e[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.504977+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.505136+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.508669+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.509185+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46810 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.510871+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.518037+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.518328+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:17.522488+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46806 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.523445+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:17.523796+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:22.441406+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.454788+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.456070+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.456324+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.457300+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.458980+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.459281+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:23.464701+0000[0m | 21 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:23.466378+0000[0m | 21 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46830 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.468341+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 1de95be6033245529b5878e622bac88d[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.468691+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.468900+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:23.472442+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:23.472819+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46842 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.474212+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:23.474951+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:23.475202+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:23.478763+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:46816 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.479666+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:23.480236+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:24.097410+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | Pulling changes from remote: 'origin'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:24.471200+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | No new commits: HEAD is at 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:27.030461+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.051645+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.053710+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.053924+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.054967+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.057002+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.057331+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:28.063006+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:28.064116+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:42502 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.066881+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 5f1ce021c0dc469088423fa77d9a20d2[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.067401+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.067642+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:28.071707+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:28.072272+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:42516 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:28.073911+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.074065+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:28.074220+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:28.079423+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:42494 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.080499+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:28.080912+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:34.116133+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.134865+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.136644+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.136860+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.137904+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.139941+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.140273+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:35.148659+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:35.149693+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:48592 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.152328+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 3a6113ba86d348d1b02c96f28831b213[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.152797+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.153002+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:35.156981+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:35.157494+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:48618 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:35.158639+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:35.158909+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.159408+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:35.163900+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:48608 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.164844+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:35.165323+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:36.178590+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.200369+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.202348+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.202576+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.203582+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.205624+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.205911+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:37.211571+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:37.212727+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:48638 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.215440+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 4495409fff98455fb41c52d72cae4ac6[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.215957+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.216242+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:37.220515+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:37.221057+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:48650 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.222822+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:37.222788+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:37.223079+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.229493+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:37.229907+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:37.227961+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:48624 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:46.048948+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.062927+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.064887+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.065172+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.066622+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.069169+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.069446+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:47.076645+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:47.078167+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:49008 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.081214+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 364eec4338594941bd88801a22463443[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.081679+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.081874+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:47.085832+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:47.086352+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:49022 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.088088+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:47.088705+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:47.088979+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:47.094690+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:49020 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.095718+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:47.096177+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:49.317947+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.338718+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.340298+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.340524+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.341548+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.343119+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.343322+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:50.348160+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:50.349341+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:49038 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.351881+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 4082be90556d4aa1852d43c9bed10b43[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.352456+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.352713+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:50.356812+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:50.357365+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:49050 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.359158+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:50.362649+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:50.363055+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:50.367761+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:49036 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.368831+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:50.369296+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:54.477117+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | Pulling changes from remote: 'origin'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:54.958879+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | No new commits: HEAD is at 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:55.417529+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.438937+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.439808+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.439925+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.440561+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.441699+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.441862+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:56.446276+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:56.447130+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60358 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.449952+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 80f2778796eb4ad185a074ba08dd65f2[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.450313+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.450541+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:56.454922+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:43:56.455375+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60368 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.456954+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:56.460051+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:56.460412+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:43:56.463843+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60360 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.464886+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:43:56.465239+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:01.153796+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.167814+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.168958+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.169196+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.169777+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.170937+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.171169+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:02.176835+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:02.177430+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60382 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.179379+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: ddfa04e87e604f2881007994e1b191cd[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.179639+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.179767+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:02.182367+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:44:02.182669+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60410 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:02.183338+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:02.183515+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.183753+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:02.190730+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60394 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.191691+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:02.192077+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:03.033627+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.042606+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.043965+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.044141+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.044945+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.046155+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.046325+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:04.050571+0000[0m | 25 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:04.051567+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60416 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.053805+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 929eec8a894d4898854c8bbdf85af72c[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.054151+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.054302+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:04.056867+0000[0m | 25 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:44:04.057165+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60432 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.058231+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:04.059017+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:04.059217+0000[0m | 24 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:04.062654+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:60422 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.063568+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:04.063918+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:06.776846+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.793185+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine rehydration callbacks[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.794902+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | full update was forced (ignoring stored hash if exists)[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.795130+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.796190+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.798380+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: policy store rehydration[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.798756+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:07.804345+0000[0m | 24 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:07.805591+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:43334 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.808384+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: d2f543bafc2747dabb7b8592cf312612[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.808848+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.809047+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:07.813274+0000[0m | 24 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_server-1        | [32m2024-01-08T23:44:07.813943+0000[0m | 24 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:43350 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:07.815863+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:07.816151+0000[0m | 25 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.815829+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_server-1        | [32m2024-01-08T23:44:07.820975+0000[0m | 25 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:43326 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.821954+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-08T23:44:07.822376+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+Gracefully stopping... (press Ctrl+C again to force)
+Aborting on container exit...
+ Container docker-opal_client-1  Stopping
+ Container docker-opal_client-1  Stopped
+ Container docker-opal_server-1  Stopping
+ Container docker-opal_server-1  Stopped
+ Container docker-broadcast_channel-1  Stopping
+ Container docker-broadcast_channel-1  Stopped
+canceled
