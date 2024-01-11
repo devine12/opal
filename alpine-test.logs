@@ -1,0 +1,2586 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 7.36kB done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 73B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:alpine3.19
+#3 DONE 0.4s
+
+#4 [internal] load metadata for docker.io/library/alpine:latest
+#4 DONE 0.4s
+
+#5 [opa-extractor 1/4] FROM docker.io/library/alpine:latest@sha256:51b67269f354137895d43f3b3d810bfacd3945438e94dc5ac55fdac340352f48
+#5 DONE 0.0s
+
+#6 [buildstage 1/8] FROM docker.io/library/python:alpine3.19@sha256:c793b92fd9e0e2a0b611756788a033d569ca864b733461c8fb30cfd14847dbcf
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 95.40kB 0.0s done
+#7 DONE 0.0s
+
+#8 [opa-extractor 2/4] RUN apk update && apk add skopeo tar
+#8 CACHED
+
+#9 [opa-extractor 3/4] WORKDIR /opal
+#9 CACHED
+
+#10 [opa-extractor 4/4] RUN skopeo copy "docker://openpolicyagent/opa:latest-static" docker-archive:./image.tar &&   mkdir image && tar xf image.tar -C ./image && cat image/*.tar | tar xf - -C ./image -i &&   find image/ -name "opa*" -type f -executable -print0 | xargs -0 -I "{}" cp {} ./opa && chmod 755 ./opa &&   rm -r image image.tar
+#10 CACHED
+
+#11 [buildstage 8/8] RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r ./base_requires.txt -r ./common_requires.txt -r ./client_requires.txt -r ./server_requires.txt
+#11 CACHED
+
+#12 [common  5/16] WORKDIR /opal
+#12 CACHED
+
+#13 [common  7/16] COPY scripts/wait-for.sh .
+#13 CACHED
+
+#14 [buildstage 6/8] COPY ./packages/opal-server/requires.txt ./server_requires.txt
+#14 CACHED
+
+#15 [common 11/16] COPY ./scripts/start.sh .
+#15 CACHED
+
+#16 [buildstage 2/8] WORKDIR /app/
+#16 CACHED
+
+#17 [common  2/16] COPY --from=BuildStage /usr/local /usr/local
+#17 CACHED
+
+#18 [buildstage 3/8] COPY ./packages/requires.txt ./base_requires.txt
+#18 CACHED
+
+#19 [common 12/16] RUN chmod +x ./start.sh
+#19 CACHED
+
+#20 [common  6/16] RUN apk add bash
+#20 CACHED
+
+#21 [common  3/16] COPY --from=BuildStage /etc/apk/repositories /etc/apk/repositories
+#21 CACHED
+
+#22 [common  9/16] RUN ln -s /opal/wait-for.sh /usr/wait-for.sh
+#22 CACHED
+
+#23 [common 13/16] RUN ln -s /opal/start.sh /start.sh
+#23 CACHED
+
+#24 [buildstage 4/8] COPY ./packages/opal-common/requires.txt ./common_requires.txt
+#24 CACHED
+
+#25 [common 10/16] RUN apk update && apk add netcat-openbsd jq libgit2-dev
+#25 CACHED
+
+#26 [buildstage 7/8] RUN apk add gcc musl-dev linux-headers python3-dev zlib-dev libffi-dev libgit2-dev
+#26 CACHED
+
+#27 [common  4/16] RUN adduser -s /bin/bash -h /opal --disabled-password opal
+#27 CACHED
+
+#28 [common  8/16] RUN chmod +x ./wait-for.sh
+#28 CACHED
+
+#29 [buildstage 5/8] COPY ./packages/opal-client/requires.txt ./client_requires.txt
+#29 CACHED
+
+#30 [common 14/16] COPY ./scripts/gunicorn_conf.py .
+#30 CACHED
+
+#31 [common 15/16] COPY . ./
+#31 DONE 0.1s
+
+#32 [common 16/16] RUN cd ./packages/opal-common && python setup.py install
+#32 0.201 /opal/packages
+#32 0.201 running install
+#32 0.202 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+#32 0.202 !!
+#32 0.202 
+#32 0.202         ********************************************************************************
+#32 0.202         Please avoid running ``setup.py`` directly.
+#32 0.202         Instead, use pypa/build, pypa/installer or other
+#32 0.202         standards-based tools.
+#32 0.202 
+#32 0.202         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+#32 0.202         ********************************************************************************
+#32 0.202 
+#32 0.202 !!
+#32 0.202   self.initialize_options()
+#32 0.274 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+#32 0.274 !!
+#32 0.274 
+#32 0.274         ********************************************************************************
+#32 0.274         Please avoid running ``setup.py`` and ``easy_install``.
+#32 0.274         Instead, use pypa/build, pypa/installer or other
+#32 0.274         standards-based tools.
+#32 0.274 
+#32 0.274         See https://github.com/pypa/setuptools/issues/917 for details.
+#32 0.274         ********************************************************************************
+#32 0.274 
+#32 0.274 !!
+#32 0.274   self.initialize_options()
+#32 0.294 running bdist_egg
+#32 0.302 running egg_info
+#32 0.304 writing opal_common.egg-info/PKG-INFO
+#32 0.305 writing dependency_links to opal_common.egg-info/dependency_links.txt
+#32 0.305 writing requirements to opal_common.egg-info/requires.txt
+#32 0.305 writing top-level names to opal_common.egg-info/top_level.txt
+#32 0.313 reading manifest file 'opal_common.egg-info/SOURCES.txt'
+#32 0.314 writing manifest file 'opal_common.egg-info/SOURCES.txt'
+#32 0.314 installing library code to build/bdist.linux-aarch64/egg
+#32 0.314 running install_lib
+#32 0.314 running build_py
+#32 0.315 copying opal_common/logger.py -> build/lib/opal_common
+#32 0.315 copying opal_common/paths.py -> build/lib/opal_common
+#32 0.315 copying opal_common/__init__.py -> build/lib/opal_common
+#32 0.315 copying opal_common/corn_utils.py -> build/lib/opal_common
+#32 0.316 copying opal_common/config.py -> build/lib/opal_common
+#32 0.316 copying opal_common/async_utils.py -> build/lib/opal_common
+#32 0.316 copying opal_common/middleware.py -> build/lib/opal_common
+#32 0.316 copying opal_common/urls.py -> build/lib/opal_common
+#32 0.316 copying opal_common/http.py -> build/lib/opal_common
+#32 0.316 copying opal_common/utils.py -> build/lib/opal_common
+#32 0.316 copying opal_common/emport.py -> build/lib/opal_common
+#32 0.316 copying opal_common/synchronization/__init__.py -> build/lib/opal_common/synchronization
+#32 0.317 copying opal_common/synchronization/named_lock.py -> build/lib/opal_common/synchronization
+#32 0.317 copying opal_common/synchronization/expiring_redis_lock.py -> build/lib/opal_common/synchronization
+#32 0.318 copying opal_common/cli/docs.py -> build/lib/opal_common/cli
+#32 0.318 copying opal_common/cli/__init__.py -> build/lib/opal_common/cli
+#32 0.318 copying opal_common/cli/typer_app.py -> build/lib/opal_common/cli
+#32 0.318 copying opal_common/cli/commands.py -> build/lib/opal_common/cli
+#32 0.318 copying opal_common/logging/__init__.py -> build/lib/opal_common/logging
+#32 0.319 copying opal_common/logging/intercept.py -> build/lib/opal_common/logging
+#32 0.319 copying opal_common/logging/thirdparty.py -> build/lib/opal_common/logging
+#32 0.319 copying opal_common/logging/filter.py -> build/lib/opal_common/logging
+#32 0.319 copying opal_common/logging/decorators.py -> build/lib/opal_common/logging
+#32 0.319 copying opal_common/logging/formatter.py -> build/lib/opal_common/logging
+#32 0.319 copying opal_common/schemas/__init__.py -> build/lib/opal_common/schemas
+#32 0.319 copying opal_common/schemas/data.py -> build/lib/opal_common/schemas
+#32 0.320 copying opal_common/schemas/policy_source.py -> build/lib/opal_common/schemas
+#32 0.320 copying opal_common/schemas/policy.py -> build/lib/opal_common/schemas
+#32 0.320 copying opal_common/schemas/security.py -> build/lib/opal_common/schemas
+#32 0.320 copying opal_common/schemas/scopes.py -> build/lib/opal_common/schemas
+#32 0.321 copying opal_common/schemas/store.py -> build/lib/opal_common/schemas
+#32 0.321 copying opal_common/schemas/webhook.py -> build/lib/opal_common/schemas
+#32 0.321 copying opal_common/fetcher/logger.py -> build/lib/opal_common/fetcher
+#32 0.321 copying opal_common/fetcher/__init__.py -> build/lib/opal_common/fetcher
+#32 0.322 copying opal_common/fetcher/events.py -> build/lib/opal_common/fetcher
+#32 0.322 copying opal_common/fetcher/fetch_provider.py -> build/lib/opal_common/fetcher
+#32 0.322 copying opal_common/fetcher/fetcher_register.py -> build/lib/opal_common/fetcher
+#32 0.322 copying opal_common/git/__init__.py -> build/lib/opal_common/git
+#32 0.322 copying opal_common/git/bundle_utils.py -> build/lib/opal_common/git
+#32 0.322 copying opal_common/git/branch_tracker.py -> build/lib/opal_common/git
+#32 0.322 copying opal_common/git/commit_viewer.py -> build/lib/opal_common/git
+#32 0.322 copying opal_common/git/exceptions.py -> build/lib/opal_common/git
+#32 0.323 copying opal_common/git/repo_cloner.py -> build/lib/opal_common/git
+#32 0.323 copying opal_common/git/diff_viewer.py -> build/lib/opal_common/git
+#32 0.323 copying opal_common/git/tar_file_to_local_git_extractor.py -> build/lib/opal_common/git
+#32 0.323 copying opal_common/git/bundle_maker.py -> build/lib/opal_common/git
+#32 0.323 copying opal_common/git/env.py -> build/lib/opal_common/git
+#32 0.323 copying opal_common/authentication/__init__.py -> build/lib/opal_common/authentication
+#32 0.324 copying opal_common/authentication/verifier.py -> build/lib/opal_common/authentication
+#32 0.324 copying opal_common/authentication/types.py -> build/lib/opal_common/authentication
+#32 0.324 copying opal_common/authentication/casting.py -> build/lib/opal_common/authentication
+#32 0.324 copying opal_common/authentication/authz.py -> build/lib/opal_common/authentication
+#32 0.324 copying opal_common/authentication/signer.py -> build/lib/opal_common/authentication
+#32 0.324 copying opal_common/authentication/deps.py -> build/lib/opal_common/authentication
+#32 0.324 copying opal_common/topics/listener.py -> build/lib/opal_common/topics
+#32 0.324 copying opal_common/topics/__init__.py -> build/lib/opal_common/topics
+#32 0.325 copying opal_common/topics/publisher.py -> build/lib/opal_common/topics
+#32 0.325 copying opal_common/topics/utils.py -> build/lib/opal_common/topics
+#32 0.325 copying opal_common/sources/__init__.py -> build/lib/opal_common/sources
+#32 0.325 copying opal_common/sources/api_policy_source.py -> build/lib/opal_common/sources
+#32 0.325 copying opal_common/sources/git_policy_source.py -> build/lib/opal_common/sources
+#32 0.325 copying opal_common/sources/base_policy_source.py -> build/lib/opal_common/sources
+#32 0.325 copying opal_common/confi/__init__.py -> build/lib/opal_common/confi
+#32 0.326 copying opal_common/confi/cli.py -> build/lib/opal_common/confi
+#32 0.326 copying opal_common/confi/types.py -> build/lib/opal_common/confi
+#32 0.326 copying opal_common/confi/confi.py -> build/lib/opal_common/confi
+#32 0.326 copying opal_common/engine/paths.py -> build/lib/opal_common/engine
+#32 0.326 copying opal_common/engine/parsing.py -> build/lib/opal_common/engine
+#32 0.326 copying opal_common/engine/__init__.py -> build/lib/opal_common/engine
+#32 0.326 copying opal_common/tests/__init__.py -> build/lib/opal_common/tests
+#32 0.327 copying opal_common/tests/url_utils_test.py -> build/lib/opal_common/tests
+#32 0.327 copying opal_common/tests/path_utils_test.py -> build/lib/opal_common/tests
+#32 0.327 copying opal_common/security/__init__.py -> build/lib/opal_common/security
+#32 0.327 copying opal_common/security/tarsafe.py -> build/lib/opal_common/security
+#32 0.327 copying opal_common/security/sslcontext.py -> build/lib/opal_common/security
+#32 0.327 copying opal_common/fetcher/providers/http_fetch_provider.py -> build/lib/opal_common/fetcher/providers
+#32 0.328 copying opal_common/fetcher/providers/__init__.py -> build/lib/opal_common/fetcher/providers
+#32 0.328 copying opal_common/fetcher/providers/fastapi_rpc_fetch_provider.py -> build/lib/opal_common/fetcher/providers
+#32 0.328 copying opal_common/fetcher/engine/__init__.py -> build/lib/opal_common/fetcher/engine
+#32 0.328 copying opal_common/fetcher/engine/fetch_worker.py -> build/lib/opal_common/fetcher/engine
+#32 0.328 copying opal_common/fetcher/engine/base_fetching_engine.py -> build/lib/opal_common/fetcher/engine
+#32 0.328 copying opal_common/fetcher/engine/core_callbacks.py -> build/lib/opal_common/fetcher/engine
+#32 0.328 copying opal_common/fetcher/engine/fetching_engine.py -> build/lib/opal_common/fetcher/engine
+#32 0.329 copying opal_common/fetcher/tests/rpc_fetch_test.py -> build/lib/opal_common/fetcher/tests
+#32 0.329 copying opal_common/fetcher/tests/__init__.py -> build/lib/opal_common/fetcher/tests
+#32 0.329 copying opal_common/fetcher/tests/http_fetch_test.py -> build/lib/opal_common/fetcher/tests
+#32 0.329 copying opal_common/fetcher/tests/failure_handler_test.py -> build/lib/opal_common/fetcher/tests
+#32 0.329 copying opal_common/authentication/tests/jwt_signer_test.py -> build/lib/opal_common/authentication/tests
+#32 0.329 copying opal_common/authentication/tests/__init__.py -> build/lib/opal_common/authentication/tests
+#32 0.331 copying opal_common/engine/py.typed -> build/lib/opal_common/engine
+#32 0.331 creating build/bdist.linux-aarch64
+#32 0.331 creating build/bdist.linux-aarch64/egg
+#32 0.332 creating build/bdist.linux-aarch64/egg/opal_common
+#32 0.332 copying build/lib/opal_common/logger.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.332 creating build/bdist.linux-aarch64/egg/opal_common/synchronization
+#32 0.332 copying build/lib/opal_common/synchronization/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/synchronization
+#32 0.333 copying build/lib/opal_common/synchronization/named_lock.py -> build/bdist.linux-aarch64/egg/opal_common/synchronization
+#32 0.333 copying build/lib/opal_common/synchronization/expiring_redis_lock.py -> build/bdist.linux-aarch64/egg/opal_common/synchronization
+#32 0.333 creating build/bdist.linux-aarch64/egg/opal_common/cli
+#32 0.333 copying build/lib/opal_common/cli/docs.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#32 0.334 copying build/lib/opal_common/cli/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#32 0.334 copying build/lib/opal_common/cli/typer_app.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#32 0.334 copying build/lib/opal_common/cli/commands.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#32 0.334 creating build/bdist.linux-aarch64/egg/opal_common/logging
+#32 0.334 copying build/lib/opal_common/logging/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#32 0.334 copying build/lib/opal_common/logging/intercept.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#32 0.335 copying build/lib/opal_common/logging/thirdparty.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#32 0.335 copying build/lib/opal_common/logging/filter.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#32 0.335 copying build/lib/opal_common/logging/decorators.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#32 0.335 copying build/lib/opal_common/logging/formatter.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#32 0.335 copying build/lib/opal_common/paths.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.335 creating build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.335 copying build/lib/opal_common/schemas/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.336 copying build/lib/opal_common/schemas/data.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.336 copying build/lib/opal_common/schemas/policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.337 copying build/lib/opal_common/schemas/policy.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.337 copying build/lib/opal_common/schemas/security.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.337 copying build/lib/opal_common/schemas/scopes.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.337 copying build/lib/opal_common/schemas/store.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.337 copying build/lib/opal_common/schemas/webhook.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#32 0.337 creating build/bdist.linux-aarch64/egg/opal_common/fetcher
+#32 0.337 copying build/lib/opal_common/fetcher/logger.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#32 0.337 copying build/lib/opal_common/fetcher/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#32 0.337 creating build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#32 0.337 copying build/lib/opal_common/fetcher/providers/http_fetch_provider.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#32 0.337 copying build/lib/opal_common/fetcher/providers/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#32 0.337 copying build/lib/opal_common/fetcher/providers/fastapi_rpc_fetch_provider.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#32 0.337 copying build/lib/opal_common/fetcher/events.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#32 0.337 copying build/lib/opal_common/fetcher/fetch_provider.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#32 0.338 creating build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#32 0.338 copying build/lib/opal_common/fetcher/engine/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#32 0.338 copying build/lib/opal_common/fetcher/engine/fetch_worker.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#32 0.338 copying build/lib/opal_common/fetcher/engine/base_fetching_engine.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#32 0.338 copying build/lib/opal_common/fetcher/engine/core_callbacks.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#32 0.338 copying build/lib/opal_common/fetcher/engine/fetching_engine.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#32 0.339 copying build/lib/opal_common/fetcher/fetcher_register.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#32 0.339 creating build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#32 0.339 copying build/lib/opal_common/fetcher/tests/rpc_fetch_test.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#32 0.339 copying build/lib/opal_common/fetcher/tests/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#32 0.339 copying build/lib/opal_common/fetcher/tests/http_fetch_test.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#32 0.339 copying build/lib/opal_common/fetcher/tests/failure_handler_test.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#32 0.339 copying build/lib/opal_common/__init__.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.339 creating build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.339 copying build/lib/opal_common/git/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/bundle_utils.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/branch_tracker.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/commit_viewer.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/exceptions.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/repo_cloner.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/diff_viewer.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/tar_file_to_local_git_extractor.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/bundle_maker.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/git/env.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#32 0.340 copying build/lib/opal_common/corn_utils.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.340 copying build/lib/opal_common/config.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.341 copying build/lib/opal_common/async_utils.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.341 copying build/lib/opal_common/middleware.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.341 creating build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.341 copying build/lib/opal_common/authentication/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.341 copying build/lib/opal_common/authentication/verifier.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.341 copying build/lib/opal_common/authentication/types.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.341 copying build/lib/opal_common/authentication/casting.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.341 copying build/lib/opal_common/authentication/authz.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.341 copying build/lib/opal_common/authentication/signer.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.341 creating build/bdist.linux-aarch64/egg/opal_common/authentication/tests
+#32 0.342 copying build/lib/opal_common/authentication/tests/jwt_signer_test.py -> build/bdist.linux-aarch64/egg/opal_common/authentication/tests
+#32 0.342 copying build/lib/opal_common/authentication/tests/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/authentication/tests
+#32 0.342 copying build/lib/opal_common/authentication/deps.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#32 0.342 creating build/bdist.linux-aarch64/egg/opal_common/topics
+#32 0.342 copying build/lib/opal_common/topics/listener.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#32 0.342 copying build/lib/opal_common/topics/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#32 0.342 copying build/lib/opal_common/topics/publisher.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#32 0.342 copying build/lib/opal_common/topics/utils.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#32 0.342 copying build/lib/opal_common/urls.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.342 copying build/lib/opal_common/http.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.342 creating build/bdist.linux-aarch64/egg/opal_common/sources
+#32 0.342 copying build/lib/opal_common/sources/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#32 0.343 copying build/lib/opal_common/sources/api_policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#32 0.343 copying build/lib/opal_common/sources/git_policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#32 0.343 copying build/lib/opal_common/sources/base_policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#32 0.343 creating build/bdist.linux-aarch64/egg/opal_common/confi
+#32 0.343 copying build/lib/opal_common/confi/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#32 0.343 copying build/lib/opal_common/confi/cli.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#32 0.344 copying build/lib/opal_common/confi/types.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#32 0.344 copying build/lib/opal_common/confi/confi.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#32 0.344 copying build/lib/opal_common/utils.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.344 creating build/bdist.linux-aarch64/egg/opal_common/engine
+#32 0.344 copying build/lib/opal_common/engine/paths.py -> build/bdist.linux-aarch64/egg/opal_common/engine
+#32 0.344 copying build/lib/opal_common/engine/parsing.py -> build/bdist.linux-aarch64/egg/opal_common/engine
+#32 0.344 copying build/lib/opal_common/engine/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/engine
+#32 0.344 copying build/lib/opal_common/engine/py.typed -> build/bdist.linux-aarch64/egg/opal_common/engine
+#32 0.344 creating build/bdist.linux-aarch64/egg/opal_common/tests
+#32 0.344 copying build/lib/opal_common/tests/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/tests
+#32 0.345 copying build/lib/opal_common/tests/url_utils_test.py -> build/bdist.linux-aarch64/egg/opal_common/tests
+#32 0.345 copying build/lib/opal_common/tests/path_utils_test.py -> build/bdist.linux-aarch64/egg/opal_common/tests
+#32 0.345 creating build/bdist.linux-aarch64/egg/opal_common/security
+#32 0.345 copying build/lib/opal_common/security/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/security
+#32 0.345 copying build/lib/opal_common/security/tarsafe.py -> build/bdist.linux-aarch64/egg/opal_common/security
+#32 0.345 copying build/lib/opal_common/security/sslcontext.py -> build/bdist.linux-aarch64/egg/opal_common/security
+#32 0.345 copying build/lib/opal_common/emport.py -> build/bdist.linux-aarch64/egg/opal_common
+#32 0.345 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logger.py to logger.cpython-312.pyc
+#32 0.346 byte-compiling build/bdist.linux-aarch64/egg/opal_common/synchronization/__init__.py to __init__.cpython-312.pyc
+#32 0.347 byte-compiling build/bdist.linux-aarch64/egg/opal_common/synchronization/named_lock.py to named_lock.cpython-312.pyc
+#32 0.347 byte-compiling build/bdist.linux-aarch64/egg/opal_common/synchronization/expiring_redis_lock.py to expiring_redis_lock.cpython-312.pyc
+#32 0.348 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/docs.py to docs.cpython-312.pyc
+#32 0.348 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/__init__.py to __init__.cpython-312.pyc
+#32 0.348 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/typer_app.py to typer_app.cpython-312.pyc
+#32 0.348 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/commands.py to commands.cpython-312.pyc
+#32 0.350 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/__init__.py to __init__.cpython-312.pyc
+#32 0.350 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/intercept.py to intercept.cpython-312.pyc
+#32 0.351 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/thirdparty.py to thirdparty.cpython-312.pyc
+#32 0.351 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/filter.py to filter.cpython-312.pyc
+#32 0.351 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/decorators.py to decorators.cpython-312.pyc
+#32 0.352 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/formatter.py to formatter.cpython-312.pyc
+#32 0.352 byte-compiling build/bdist.linux-aarch64/egg/opal_common/paths.py to paths.cpython-312.pyc
+#32 0.353 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/__init__.py to __init__.cpython-312.pyc
+#32 0.353 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/data.py to data.cpython-312.pyc
+#32 0.354 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/policy_source.py to policy_source.cpython-312.pyc
+#32 0.354 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/policy.py to policy.cpython-312.pyc
+#32 0.355 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/security.py to security.cpython-312.pyc
+#32 0.355 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/scopes.py to scopes.cpython-312.pyc
+#32 0.356 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/store.py to store.cpython-312.pyc
+#32 0.356 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/webhook.py to webhook.cpython-312.pyc
+#32 0.356 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/logger.py to logger.cpython-312.pyc
+#32 0.356 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/__init__.py to __init__.cpython-312.pyc
+#32 0.357 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/providers/http_fetch_provider.py to http_fetch_provider.cpython-312.pyc
+#32 0.358 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/providers/__init__.py to __init__.cpython-312.pyc
+#32 0.358 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/providers/fastapi_rpc_fetch_provider.py to fastapi_rpc_fetch_provider.cpython-312.pyc
+#32 0.359 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/events.py to events.cpython-312.pyc
+#32 0.359 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/fetch_provider.py to fetch_provider.cpython-312.pyc
+#32 0.359 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/__init__.py to __init__.cpython-312.pyc
+#32 0.359 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/fetch_worker.py to fetch_worker.cpython-312.pyc
+#32 0.360 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/base_fetching_engine.py to base_fetching_engine.cpython-312.pyc
+#32 0.360 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/core_callbacks.py to core_callbacks.cpython-312.pyc
+#32 0.361 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/fetching_engine.py to fetching_engine.cpython-312.pyc
+#32 0.362 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/fetcher_register.py to fetcher_register.cpython-312.pyc
+#32 0.362 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/rpc_fetch_test.py to rpc_fetch_test.cpython-312.pyc
+#32 0.363 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/__init__.py to __init__.cpython-312.pyc
+#32 0.363 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/http_fetch_test.py to http_fetch_test.cpython-312.pyc
+#32 0.364 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/failure_handler_test.py to failure_handler_test.cpython-312.pyc
+#32 0.365 byte-compiling build/bdist.linux-aarch64/egg/opal_common/__init__.py to __init__.cpython-312.pyc
+#32 0.365 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/__init__.py to __init__.cpython-312.pyc
+#32 0.365 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/bundle_utils.py to bundle_utils.cpython-312.pyc
+#32 0.366 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/branch_tracker.py to branch_tracker.cpython-312.pyc
+#32 0.367 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/commit_viewer.py to commit_viewer.cpython-312.pyc
+#32 0.368 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/exceptions.py to exceptions.cpython-312.pyc
+#32 0.368 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/repo_cloner.py to repo_cloner.cpython-312.pyc
+#32 0.370 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/diff_viewer.py to diff_viewer.cpython-312.pyc
+#32 0.371 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/tar_file_to_local_git_extractor.py to tar_file_to_local_git_extractor.cpython-312.pyc
+#32 0.372 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/bundle_maker.py to bundle_maker.cpython-312.pyc
+#32 0.374 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/env.py to env.cpython-312.pyc
+#32 0.374 byte-compiling build/bdist.linux-aarch64/egg/opal_common/corn_utils.py to corn_utils.cpython-312.pyc
+#32 0.375 byte-compiling build/bdist.linux-aarch64/egg/opal_common/config.py to config.cpython-312.pyc
+#32 0.375 byte-compiling build/bdist.linux-aarch64/egg/opal_common/async_utils.py to async_utils.cpython-312.pyc
+#32 0.376 byte-compiling build/bdist.linux-aarch64/egg/opal_common/middleware.py to middleware.cpython-312.pyc
+#32 0.376 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/__init__.py to __init__.cpython-312.pyc
+#32 0.376 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/verifier.py to verifier.cpython-312.pyc
+#32 0.377 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/types.py to types.cpython-312.pyc
+#32 0.378 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/casting.py to casting.cpython-312.pyc
+#32 0.378 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/authz.py to authz.cpython-312.pyc
+#32 0.379 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/signer.py to signer.cpython-312.pyc
+#32 0.380 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/tests/jwt_signer_test.py to jwt_signer_test.cpython-312.pyc
+#32 0.381 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/tests/__init__.py to __init__.cpython-312.pyc
+#32 0.382 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/deps.py to deps.cpython-312.pyc
+#32 0.382 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/listener.py to listener.cpython-312.pyc
+#32 0.383 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/__init__.py to __init__.cpython-312.pyc
+#32 0.383 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/publisher.py to publisher.cpython-312.pyc
+#32 0.385 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/utils.py to utils.cpython-312.pyc
+#32 0.385 byte-compiling build/bdist.linux-aarch64/egg/opal_common/urls.py to urls.cpython-312.pyc
+#32 0.385 byte-compiling build/bdist.linux-aarch64/egg/opal_common/http.py to http.cpython-312.pyc
+#32 0.386 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/__init__.py to __init__.cpython-312.pyc
+#32 0.386 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/api_policy_source.py to api_policy_source.cpython-312.pyc
+#32 0.387 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/git_policy_source.py to git_policy_source.cpython-312.pyc
+#32 0.388 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/base_policy_source.py to base_policy_source.cpython-312.pyc
+#32 0.389 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/__init__.py to __init__.cpython-312.pyc
+#32 0.389 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/cli.py to cli.cpython-312.pyc
+#32 0.390 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/types.py to types.cpython-312.pyc
+#32 0.391 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/confi.py to confi.cpython-312.pyc
+#32 0.393 byte-compiling build/bdist.linux-aarch64/egg/opal_common/utils.py to utils.cpython-312.pyc
+#32 0.395 byte-compiling build/bdist.linux-aarch64/egg/opal_common/engine/paths.py to paths.cpython-312.pyc
+#32 0.395 byte-compiling build/bdist.linux-aarch64/egg/opal_common/engine/parsing.py to parsing.cpython-312.pyc
+#32 0.395 byte-compiling build/bdist.linux-aarch64/egg/opal_common/engine/__init__.py to __init__.cpython-312.pyc
+#32 0.395 byte-compiling build/bdist.linux-aarch64/egg/opal_common/tests/__init__.py to __init__.cpython-312.pyc
+#32 0.395 byte-compiling build/bdist.linux-aarch64/egg/opal_common/tests/url_utils_test.py to url_utils_test.cpython-312.pyc
+#32 0.396 byte-compiling build/bdist.linux-aarch64/egg/opal_common/tests/path_utils_test.py to path_utils_test.cpython-312.pyc
+#32 0.397 byte-compiling build/bdist.linux-aarch64/egg/opal_common/security/__init__.py to __init__.cpython-312.pyc
+#32 0.397 byte-compiling build/bdist.linux-aarch64/egg/opal_common/security/tarsafe.py to tarsafe.cpython-312.pyc
+#32 0.398 byte-compiling build/bdist.linux-aarch64/egg/opal_common/security/sslcontext.py to sslcontext.cpython-312.pyc
+#32 0.399 byte-compiling build/bdist.linux-aarch64/egg/opal_common/emport.py to emport.cpython-312.pyc
+#32 0.401 creating build/bdist.linux-aarch64/egg/EGG-INFO
+#32 0.401 copying opal_common.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
+#32 0.402 copying opal_common.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#32 0.402 copying opal_common.egg-info/dependency_links.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#32 0.403 copying opal_common.egg-info/requires.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#32 0.404 copying opal_common.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#32 0.404 zip_safe flag not set; analyzing archive contents...
+#32 0.407 opal_common.authentication.tests.__pycache__.jwt_signer_test.cpython-312: module references __file__
+#32 0.410 opal_common.fetcher.providers.__pycache__.__init__.cpython-312: module references __file__
+#32 0.411 opal_common.fetcher.tests.__pycache__.failure_handler_test.cpython-312: module references __file__
+#32 0.411 opal_common.fetcher.tests.__pycache__.http_fetch_test.cpython-312: module references __file__
+#32 0.412 opal_common.fetcher.tests.__pycache__.rpc_fetch_test.cpython-312: module references __file__
+#32 0.414 opal_common.logging.__pycache__.intercept.cpython-312: module references __file__
+#32 0.417 opal_common.tests.__pycache__.path_utils_test.cpython-312: module references __file__
+#32 0.417 opal_common.tests.__pycache__.url_utils_test.cpython-312: module references __file__
+#32 0.418 creating 'dist/opal_common-0.7.4-py3.12.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+#32 0.455 removing 'build/bdist.linux-aarch64/egg' (and everything under it)
+#32 0.460 Processing opal_common-0.7.4-py3.12.egg
+#32 0.462 creating /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg
+#32 0.462 Extracting opal_common-0.7.4-py3.12.egg to /usr/local/lib/python3.12/site-packages
+#32 0.527 Adding opal-common 0.7.4 to easy-install.pth file
+#32 0.528 
+#32 0.528 Installed /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg
+#32 0.528 Processing dependencies for opal-common==0.7.4
+#32 0.578 Searching for setuptools==69.0.2
+#32 0.579 Best match: setuptools 69.0.2
+#32 0.579 Adding setuptools 69.0.2 to easy-install.pth file
+#32 0.579 detected new path './opal_common-0.7.4-py3.12.egg'
+#32 0.579 
+#32 0.579 Using /usr/local/lib/python3.12/site-packages
+#32 0.580 Searching for fastapi-utils==0.2.1
+#32 0.580 Best match: fastapi-utils 0.2.1
+#32 0.580 Adding fastapi-utils 0.2.1 to easy-install.pth file
+#32 0.580 
+#32 0.580 Using /usr/local/lib/python3.12/site-packages
+#32 0.581 Searching for uvicorn==0.25.0
+#32 0.581 Best match: uvicorn 0.25.0
+#32 0.581 Adding uvicorn 0.25.0 to easy-install.pth file
+#32 0.581 Installing uvicorn script to /usr/local/bin
+#32 0.581 
+#32 0.581 Using /usr/local/lib/python3.12/site-packages
+#32 0.581 Searching for pydantic==1.10.13
+#32 0.582 Best match: pydantic 1.10.13
+#32 0.582 Adding pydantic 1.10.13 to easy-install.pth file
+#32 0.582 
+#32 0.582 Using /usr/local/lib/python3.12/site-packages
+#32 0.582 Searching for gunicorn==20.1.0
+#32 0.583 Best match: gunicorn 20.1.0
+#32 0.583 Adding gunicorn 20.1.0 to easy-install.pth file
+#32 0.583 Installing gunicorn script to /usr/local/bin
+#32 0.583 
+#32 0.583 Using /usr/local/lib/python3.12/site-packages
+#32 0.583 Searching for fastapi-websocket-rpc==0.1.25
+#32 0.583 Best match: fastapi-websocket-rpc 0.1.25
+#32 0.583 Adding fastapi-websocket-rpc 0.1.25 to easy-install.pth file
+#32 0.584 
+#32 0.584 Using /usr/local/lib/python3.12/site-packages
+#32 0.584 Searching for fastapi-websocket-pubsub==0.3.4
+#32 0.584 Best match: fastapi-websocket-pubsub 0.3.4
+#32 0.584 Adding fastapi-websocket-pubsub 0.3.4 to easy-install.pth file
+#32 0.585 
+#32 0.585 Using /usr/local/lib/python3.12/site-packages
+#32 0.585 Searching for fastapi==0.108.0
+#32 0.585 Best match: fastapi 0.108.0
+#32 0.585 Adding fastapi 0.108.0 to easy-install.pth file
+#32 0.585 
+#32 0.585 Using /usr/local/lib/python3.12/site-packages
+#32 0.586 Searching for typer==0.9.0
+#32 0.586 Best match: typer 0.9.0
+#32 0.586 Adding typer 0.9.0 to easy-install.pth file
+#32 0.586 
+#32 0.586 Using /usr/local/lib/python3.12/site-packages
+#32 0.586 Searching for idna==3.6
+#32 0.586 Best match: idna 3.6
+#32 0.586 Adding idna 3.6 to easy-install.pth file
+#32 0.587 
+#32 0.587 Using /usr/local/lib/python3.12/site-packages
+#32 0.587 Searching for charset-normalizer==2.1.1
+#32 0.587 Best match: charset-normalizer 2.1.1
+#32 0.587 Adding charset-normalizer 2.1.1 to easy-install.pth file
+#32 0.588 Installing normalizer script to /usr/local/bin
+#32 0.588 
+#32 0.588 Using /usr/local/lib/python3.12/site-packages
+#32 0.588 Searching for tenacity==8.2.3
+#32 0.588 Best match: tenacity 8.2.3
+#32 0.588 Adding tenacity 8.2.3 to easy-install.pth file
+#32 0.589 
+#32 0.589 Using /usr/local/lib/python3.12/site-packages
+#32 0.589 Searching for python-decouple==3.8
+#32 0.589 Best match: python-decouple 3.8
+#32 0.589 Adding python-decouple 3.8 to easy-install.pth file
+#32 0.589 
+#32 0.589 Using /usr/local/lib/python3.12/site-packages
+#32 0.589 Searching for PyJWT==2.8.0
+#32 0.589 Best match: PyJWT 2.8.0
+#32 0.589 Adding PyJWT 2.8.0 to easy-install.pth file
+#32 0.590 
+#32 0.590 Using /usr/local/lib/python3.12/site-packages
+#32 0.590 Searching for loguru==0.7.2
+#32 0.590 Best match: loguru 0.7.2
+#32 0.590 Adding loguru 0.7.2 to easy-install.pth file
+#32 0.590 
+#32 0.590 Using /usr/local/lib/python3.12/site-packages
+#32 0.591 Searching for GitPython==3.1.40
+#32 0.591 Best match: GitPython 3.1.40
+#32 0.591 Adding GitPython 3.1.40 to easy-install.pth file
+#32 0.591 
+#32 0.591 Using /usr/local/lib/python3.12/site-packages
+#32 0.591 Searching for cryptography==41.0.7
+#32 0.591 Best match: cryptography 41.0.7
+#32 0.591 Adding cryptography 41.0.7 to easy-install.pth file
+#32 0.592 
+#32 0.592 Using /usr/local/lib/python3.12/site-packages
+#32 0.592 Searching for click==8.1.7
+#32 0.592 Best match: click 8.1.7
+#32 0.592 Adding click 8.1.7 to easy-install.pth file
+#32 0.593 
+#32 0.593 Using /usr/local/lib/python3.12/site-packages
+#32 0.593 Searching for aiohttp==3.9.1
+#32 0.593 Best match: aiohttp 3.9.1
+#32 0.593 Adding aiohttp 3.9.1 to easy-install.pth file
+#32 0.593 
+#32 0.593 Using /usr/local/lib/python3.12/site-packages
+#32 0.593 Searching for SQLAlchemy==1.4.51
+#32 0.593 Best match: SQLAlchemy 1.4.51
+#32 0.593 Adding SQLAlchemy 1.4.51 to easy-install.pth file
+#32 0.594 
+#32 0.594 Using /usr/local/lib/python3.12/site-packages
+#32 0.594 Searching for websockets==10.4
+#32 0.594 Best match: websockets 10.4
+#32 0.594 Adding websockets 10.4 to easy-install.pth file
+#32 0.594 
+#32 0.594 Using /usr/local/lib/python3.12/site-packages
+#32 0.594 Searching for watchfiles==0.21.0
+#32 0.594 Best match: watchfiles 0.21.0
+#32 0.594 Adding watchfiles 0.21.0 to easy-install.pth file
+#32 0.595 Installing watchfiles script to /usr/local/bin
+#32 0.595 
+#32 0.595 Using /usr/local/lib/python3.12/site-packages
+#32 0.595 Searching for uvloop==0.19.0
+#32 0.595 Best match: uvloop 0.19.0
+#32 0.595 Adding uvloop 0.19.0 to easy-install.pth file
+#32 0.596 
+#32 0.596 Using /usr/local/lib/python3.12/site-packages
+#32 0.596 Searching for PyYAML==6.0.1
+#32 0.596 Best match: PyYAML 6.0.1
+#32 0.596 Adding PyYAML 6.0.1 to easy-install.pth file
+#32 0.596 
+#32 0.596 Using /usr/local/lib/python3.12/site-packages
+#32 0.596 Searching for python-dotenv==1.0.0
+#32 0.597 Best match: python-dotenv 1.0.0
+#32 0.597 Adding python-dotenv 1.0.0 to easy-install.pth file
+#32 0.597 Installing dotenv script to /usr/local/bin
+#32 0.597 
+#32 0.597 Using /usr/local/lib/python3.12/site-packages
+#32 0.598 Searching for httptools==0.6.1
+#32 0.598 Best match: httptools 0.6.1
+#32 0.598 Adding httptools 0.6.1 to easy-install.pth file
+#32 0.598 
+#32 0.598 Using /usr/local/lib/python3.12/site-packages
+#32 0.598 Searching for h11==0.14.0
+#32 0.599 Best match: h11 0.14.0
+#32 0.599 Adding h11 0.14.0 to easy-install.pth file
+#32 0.599 
+#32 0.599 Using /usr/local/lib/python3.12/site-packages
+#32 0.599 Searching for email-validator==2.1.0.post1
+#32 0.599 Best match: email-validator 2.1.0.post1
+#32 0.599 Adding email-validator 2.1.0.post1 to easy-install.pth file
+#32 0.600 Installing email_validator script to /usr/local/bin
+#32 0.600 
+#32 0.600 Using /usr/local/lib/python3.12/site-packages
+#32 0.600 Searching for typing-extensions==4.9.0
+#32 0.600 Best match: typing-extensions 4.9.0
+#32 0.600 Adding typing-extensions 4.9.0 to easy-install.pth file
+#32 0.601 
+#32 0.601 Using /usr/local/lib/python3.12/site-packages
+#32 0.601 Searching for packaging==23.2
+#32 0.601 Best match: packaging 23.2
+#32 0.601 Adding packaging 23.2 to easy-install.pth file
+#32 0.601 
+#32 0.601 Using /usr/local/lib/python3.12/site-packages
+#32 0.601 Searching for permit-broadcaster==0.2.3
+#32 0.602 Best match: permit-broadcaster 0.2.3
+#32 0.602 Adding permit-broadcaster 0.2.3 to easy-install.pth file
+#32 0.602 
+#32 0.602 Using /usr/local/lib/python3.12/site-packages
+#32 0.602 Searching for starlette==0.32.0.post1
+#32 0.602 Best match: starlette 0.32.0.post1
+#32 0.602 Adding starlette 0.32.0.post1 to easy-install.pth file
+#32 0.602 
+#32 0.602 Using /usr/local/lib/python3.12/site-packages
+#32 0.603 Searching for gitdb==4.0.11
+#32 0.603 Best match: gitdb 4.0.11
+#32 0.603 Adding gitdb 4.0.11 to easy-install.pth file
+#32 0.603 
+#32 0.603 Using /usr/local/lib/python3.12/site-packages
+#32 0.603 Searching for cffi==1.16.0
+#32 0.603 Best match: cffi 1.16.0
+#32 0.603 Adding cffi 1.16.0 to easy-install.pth file
+#32 0.604 
+#32 0.604 Using /usr/local/lib/python3.12/site-packages
+#32 0.604 Searching for aiosignal==1.3.1
+#32 0.604 Best match: aiosignal 1.3.1
+#32 0.604 Adding aiosignal 1.3.1 to easy-install.pth file
+#32 0.604 
+#32 0.604 Using /usr/local/lib/python3.12/site-packages
+#32 0.605 Searching for frozenlist==1.4.1
+#32 0.605 Best match: frozenlist 1.4.1
+#32 0.605 Adding frozenlist 1.4.1 to easy-install.pth file
+#32 0.605 
+#32 0.605 Using /usr/local/lib/python3.12/site-packages
+#32 0.605 Searching for yarl==1.9.4
+#32 0.605 Best match: yarl 1.9.4
+#32 0.605 Adding yarl 1.9.4 to easy-install.pth file
+#32 0.606 
+#32 0.606 Using /usr/local/lib/python3.12/site-packages
+#32 0.606 Searching for multidict==6.0.4
+#32 0.606 Best match: multidict 6.0.4
+#32 0.606 Adding multidict 6.0.4 to easy-install.pth file
+#32 0.606 
+#32 0.606 Using /usr/local/lib/python3.12/site-packages
+#32 0.606 Searching for attrs==23.2.0
+#32 0.606 Best match: attrs 23.2.0
+#32 0.606 Adding attrs 23.2.0 to easy-install.pth file
+#32 0.607 
+#32 0.607 Using /usr/local/lib/python3.12/site-packages
+#32 0.607 Searching for greenlet==3.0.3
+#32 0.607 Best match: greenlet 3.0.3
+#32 0.607 Adding greenlet 3.0.3 to easy-install.pth file
+#32 0.607 
+#32 0.607 Using /usr/local/lib/python3.12/site-packages
+#32 0.608 Searching for anyio==4.2.0
+#32 0.608 Best match: anyio 4.2.0
+#32 0.608 Adding anyio 4.2.0 to easy-install.pth file
+#32 0.608 
+#32 0.608 Using /usr/local/lib/python3.12/site-packages
+#32 0.608 Searching for dnspython==2.4.2
+#32 0.608 Best match: dnspython 2.4.2
+#32 0.608 Adding dnspython 2.4.2 to easy-install.pth file
+#32 0.609 
+#32 0.609 Using /usr/local/lib/python3.12/site-packages
+#32 0.609 Searching for asyncio-redis==0.16.0
+#32 0.609 Best match: asyncio-redis 0.16.0
+#32 0.609 Adding asyncio-redis 0.16.0 to easy-install.pth file
+#32 0.610 
+#32 0.610 Using /usr/local/lib/python3.12/site-packages
+#32 0.610 Searching for aiokafka==0.10.0
+#32 0.610 Best match: aiokafka 0.10.0
+#32 0.610 Adding aiokafka 0.10.0 to easy-install.pth file
+#32 0.610 
+#32 0.610 Using /usr/local/lib/python3.12/site-packages
+#32 0.610 Searching for asyncpg==0.29.0
+#32 0.610 Best match: asyncpg 0.29.0
+#32 0.610 Adding asyncpg 0.29.0 to easy-install.pth file
+#32 0.611 
+#32 0.611 Using /usr/local/lib/python3.12/site-packages
+#32 0.611 Searching for smmap==5.0.1
+#32 0.611 Best match: smmap 5.0.1
+#32 0.611 Adding smmap 5.0.1 to easy-install.pth file
+#32 0.612 
+#32 0.612 Using /usr/local/lib/python3.12/site-packages
+#32 0.612 Searching for pycparser==2.21
+#32 0.612 Best match: pycparser 2.21
+#32 0.612 Adding pycparser 2.21 to easy-install.pth file
+#32 0.612 
+#32 0.612 Using /usr/local/lib/python3.12/site-packages
+#32 0.612 Searching for sniffio==1.3.0
+#32 0.612 Best match: sniffio 1.3.0
+#32 0.612 Adding sniffio 1.3.0 to easy-install.pth file
+#32 0.613 
+#32 0.613 Using /usr/local/lib/python3.12/site-packages
+#32 0.613 Searching for async-timeout==4.0.3
+#32 0.613 Best match: async-timeout 4.0.3
+#32 0.613 Adding async-timeout 4.0.3 to easy-install.pth file
+#32 0.614 
+#32 0.614 Using /usr/local/lib/python3.12/site-packages
+#32 0.614 Finished processing dependencies for opal-common==0.7.4
+#32 DONE 0.7s
+
+#33 [client-standalone 1/2] RUN cd ./packages/opal-client && python setup.py install
+#33 0.201 running install
+#33 0.202 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+#33 0.202 !!
+#33 0.202 
+#33 0.202         ********************************************************************************
+#33 0.202         Please avoid running ``setup.py`` directly.
+#33 0.202         Instead, use pypa/build, pypa/installer or other
+#33 0.202         standards-based tools.
+#33 0.202 
+#33 0.202         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+#33 0.202         ********************************************************************************
+#33 0.202 
+#33 0.202 !!
+#33 0.202   self.initialize_options()
+#33 0.249 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+#33 0.249 !!
+#33 0.249 
+#33 0.249         ********************************************************************************
+#33 0.249         Please avoid running ``setup.py`` and ``easy_install``.
+#33 0.249         Instead, use pypa/build, pypa/installer or other
+#33 0.249         standards-based tools.
+#33 0.249 
+#33 0.249         See https://github.com/pypa/setuptools/issues/917 for details.
+#33 0.249         ********************************************************************************
+#33 0.249 
+#33 0.249 !!
+#33 0.249   self.initialize_options()
+#33 0.270 running bdist_egg
+#33 0.279 running egg_info
+#33 0.281 writing opal_client.egg-info/PKG-INFO
+#33 0.282 writing dependency_links to opal_client.egg-info/dependency_links.txt
+#33 0.282 writing entry points to opal_client.egg-info/entry_points.txt
+#33 0.282 writing requirements to opal_client.egg-info/requires.txt
+#33 0.283 writing top-level names to opal_client.egg-info/top_level.txt
+#33 0.289 reading manifest file 'opal_client.egg-info/SOURCES.txt'
+#33 0.290 writing manifest file 'opal_client.egg-info/SOURCES.txt'
+#33 0.290 installing library code to build/bdist.linux-aarch64/egg
+#33 0.290 running install_lib
+#33 0.290 running build_py
+#33 0.290 copying opal_client/logger.py -> build/lib/opal_client
+#33 0.291 copying opal_client/limiter.py -> build/lib/opal_client
+#33 0.291 copying opal_client/__init__.py -> build/lib/opal_client
+#33 0.291 copying opal_client/cli.py -> build/lib/opal_client
+#33 0.291 copying opal_client/config.py -> build/lib/opal_client
+#33 0.292 copying opal_client/main.py -> build/lib/opal_client
+#33 0.292 copying opal_client/client.py -> build/lib/opal_client
+#33 0.292 copying opal_client/utils.py -> build/lib/opal_client
+#33 0.292 copying opal_client/data/__init__.py -> build/lib/opal_client/data
+#33 0.292 copying opal_client/data/rpc.py -> build/lib/opal_client/data
+#33 0.293 copying opal_client/data/api.py -> build/lib/opal_client/data
+#33 0.293 copying opal_client/data/fetcher.py -> build/lib/opal_client/data
+#33 0.293 copying opal_client/data/updater.py -> build/lib/opal_client/data
+#33 0.293 copying opal_client/policy_store/schemas.py -> build/lib/opal_client/policy_store
+#33 0.293 copying opal_client/policy_store/policy_store_client_factory.py -> build/lib/opal_client/policy_store
+#33 0.294 copying opal_client/policy_store/base_policy_store_client.py -> build/lib/opal_client/policy_store
+#33 0.294 copying opal_client/policy_store/__init__.py -> build/lib/opal_client/policy_store
+#33 0.294 copying opal_client/policy_store/api.py -> build/lib/opal_client/policy_store
+#33 0.294 copying opal_client/policy_store/mock_policy_store_client.py -> build/lib/opal_client/policy_store
+#33 0.294 copying opal_client/policy_store/opa_client.py -> build/lib/opal_client/policy_store
+#33 0.295 copying opal_client/policy_store/cedar_client.py -> build/lib/opal_client/policy_store
+#33 0.295 copying opal_client/callbacks/__init__.py -> build/lib/opal_client/callbacks
+#33 0.295 copying opal_client/callbacks/register.py -> build/lib/opal_client/callbacks
+#33 0.295 copying opal_client/callbacks/api.py -> build/lib/opal_client/callbacks
+#33 0.295 copying opal_client/callbacks/reporter.py -> build/lib/opal_client/callbacks
+#33 0.296 copying opal_client/engine/logger.py -> build/lib/opal_client/engine
+#33 0.296 copying opal_client/engine/options.py -> build/lib/opal_client/engine
+#33 0.296 copying opal_client/engine/__init__.py -> build/lib/opal_client/engine
+#33 0.296 copying opal_client/engine/runner.py -> build/lib/opal_client/engine
+#33 0.296 copying opal_client/policy/options.py -> build/lib/opal_client/policy
+#33 0.297 copying opal_client/policy/__init__.py -> build/lib/opal_client/policy
+#33 0.297 copying opal_client/policy/api.py -> build/lib/opal_client/policy
+#33 0.297 copying opal_client/policy/fetcher.py -> build/lib/opal_client/policy
+#33 0.297 copying opal_client/policy/updater.py -> build/lib/opal_client/policy
+#33 0.297 copying opal_client/policy/topics.py -> build/lib/opal_client/policy
+#33 0.298 copying opal_client/tests/data_updater_test.py -> build/lib/opal_client/tests
+#33 0.298 copying opal_client/tests/__init__.py -> build/lib/opal_client/tests
+#33 0.298 copying opal_client/tests/opa_client_test.py -> build/lib/opal_client/tests
+#33 0.298 copying opal_client/tests/server_to_client_intergation_test.py -> build/lib/opal_client/tests
+#33 0.298 copying opal_client/engine/healthcheck/opal.rego -> build/lib/opal_client/engine/healthcheck
+#33 0.299 creating build/bdist.linux-aarch64
+#33 0.299 creating build/bdist.linux-aarch64/egg
+#33 0.299 creating build/bdist.linux-aarch64/egg/opal_client
+#33 0.299 copying build/lib/opal_client/logger.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.299 copying build/lib/opal_client/limiter.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.299 copying build/lib/opal_client/__init__.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.299 copying build/lib/opal_client/cli.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.300 creating build/bdist.linux-aarch64/egg/opal_client/data
+#33 0.300 copying build/lib/opal_client/data/__init__.py -> build/bdist.linux-aarch64/egg/opal_client/data
+#33 0.300 copying build/lib/opal_client/data/rpc.py -> build/bdist.linux-aarch64/egg/opal_client/data
+#33 0.300 copying build/lib/opal_client/data/api.py -> build/bdist.linux-aarch64/egg/opal_client/data
+#33 0.300 copying build/lib/opal_client/data/fetcher.py -> build/bdist.linux-aarch64/egg/opal_client/data
+#33 0.300 copying build/lib/opal_client/data/updater.py -> build/bdist.linux-aarch64/egg/opal_client/data
+#33 0.300 copying build/lib/opal_client/config.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.300 copying build/lib/opal_client/main.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.300 creating build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.300 copying build/lib/opal_client/policy_store/schemas.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/policy_store/policy_store_client_factory.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/policy_store/base_policy_store_client.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/policy_store/__init__.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/policy_store/api.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/policy_store/mock_policy_store_client.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/policy_store/opa_client.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/policy_store/cedar_client.py -> build/bdist.linux-aarch64/egg/opal_client/policy_store
+#33 0.301 copying build/lib/opal_client/client.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.301 creating build/bdist.linux-aarch64/egg/opal_client/callbacks
+#33 0.301 copying build/lib/opal_client/callbacks/__init__.py -> build/bdist.linux-aarch64/egg/opal_client/callbacks
+#33 0.301 copying build/lib/opal_client/callbacks/register.py -> build/bdist.linux-aarch64/egg/opal_client/callbacks
+#33 0.302 copying build/lib/opal_client/callbacks/api.py -> build/bdist.linux-aarch64/egg/opal_client/callbacks
+#33 0.302 copying build/lib/opal_client/callbacks/reporter.py -> build/bdist.linux-aarch64/egg/opal_client/callbacks
+#33 0.302 copying build/lib/opal_client/utils.py -> build/bdist.linux-aarch64/egg/opal_client
+#33 0.302 creating build/bdist.linux-aarch64/egg/opal_client/engine
+#33 0.302 copying build/lib/opal_client/engine/logger.py -> build/bdist.linux-aarch64/egg/opal_client/engine
+#33 0.302 copying build/lib/opal_client/engine/options.py -> build/bdist.linux-aarch64/egg/opal_client/engine
+#33 0.302 copying build/lib/opal_client/engine/__init__.py -> build/bdist.linux-aarch64/egg/opal_client/engine
+#33 0.302 creating build/bdist.linux-aarch64/egg/opal_client/engine/healthcheck
+#33 0.302 copying build/lib/opal_client/engine/healthcheck/opal.rego -> build/bdist.linux-aarch64/egg/opal_client/engine/healthcheck
+#33 0.302 copying build/lib/opal_client/engine/runner.py -> build/bdist.linux-aarch64/egg/opal_client/engine
+#33 0.302 creating build/bdist.linux-aarch64/egg/opal_client/policy
+#33 0.302 copying build/lib/opal_client/policy/options.py -> build/bdist.linux-aarch64/egg/opal_client/policy
+#33 0.302 copying build/lib/opal_client/policy/__init__.py -> build/bdist.linux-aarch64/egg/opal_client/policy
+#33 0.303 copying build/lib/opal_client/policy/api.py -> build/bdist.linux-aarch64/egg/opal_client/policy
+#33 0.303 copying build/lib/opal_client/policy/fetcher.py -> build/bdist.linux-aarch64/egg/opal_client/policy
+#33 0.303 copying build/lib/opal_client/policy/updater.py -> build/bdist.linux-aarch64/egg/opal_client/policy
+#33 0.303 copying build/lib/opal_client/policy/topics.py -> build/bdist.linux-aarch64/egg/opal_client/policy
+#33 0.303 creating build/bdist.linux-aarch64/egg/opal_client/tests
+#33 0.303 copying build/lib/opal_client/tests/data_updater_test.py -> build/bdist.linux-aarch64/egg/opal_client/tests
+#33 0.303 copying build/lib/opal_client/tests/__init__.py -> build/bdist.linux-aarch64/egg/opal_client/tests
+#33 0.303 copying build/lib/opal_client/tests/opa_client_test.py -> build/bdist.linux-aarch64/egg/opal_client/tests
+#33 0.303 copying build/lib/opal_client/tests/server_to_client_intergation_test.py -> build/bdist.linux-aarch64/egg/opal_client/tests
+#33 0.304 byte-compiling build/bdist.linux-aarch64/egg/opal_client/logger.py to logger.cpython-312.pyc
+#33 0.304 byte-compiling build/bdist.linux-aarch64/egg/opal_client/limiter.py to limiter.cpython-312.pyc
+#33 0.305 byte-compiling build/bdist.linux-aarch64/egg/opal_client/__init__.py to __init__.cpython-312.pyc
+#33 0.305 byte-compiling build/bdist.linux-aarch64/egg/opal_client/cli.py to cli.cpython-312.pyc
+#33 0.306 byte-compiling build/bdist.linux-aarch64/egg/opal_client/data/__init__.py to __init__.cpython-312.pyc
+#33 0.306 byte-compiling build/bdist.linux-aarch64/egg/opal_client/data/rpc.py to rpc.cpython-312.pyc
+#33 0.306 byte-compiling build/bdist.linux-aarch64/egg/opal_client/data/api.py to api.cpython-312.pyc
+#33 0.306 byte-compiling build/bdist.linux-aarch64/egg/opal_client/data/fetcher.py to fetcher.cpython-312.pyc
+#33 0.307 byte-compiling build/bdist.linux-aarch64/egg/opal_client/data/updater.py to updater.cpython-312.pyc
+#33 0.310 byte-compiling build/bdist.linux-aarch64/egg/opal_client/config.py to config.cpython-312.pyc
+#33 0.310 build/bdist.linux-aarch64/egg/opal_client/config.py:86: SyntaxWarning: invalid escape sequence '\*'
+#33 0.310   description="When loading policies manually or otherwise externally into the policy store, use this list of glob patterns to have OPAL ignore and not delete or override them, end paths (without any wildcards in the middle) with '\**' to indicate you want all nested under the path to be ignored",
+#33 0.312 byte-compiling build/bdist.linux-aarch64/egg/opal_client/main.py to main.cpython-312.pyc
+#33 0.312 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/schemas.py to schemas.cpython-312.pyc
+#33 0.312 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/policy_store_client_factory.py to policy_store_client_factory.cpython-312.pyc
+#33 0.313 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/base_policy_store_client.py to base_policy_store_client.cpython-312.pyc
+#33 0.315 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/__init__.py to __init__.cpython-312.pyc
+#33 0.315 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/api.py to api.cpython-312.pyc
+#33 0.315 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/mock_policy_store_client.py to mock_policy_store_client.cpython-312.pyc
+#33 0.316 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/opa_client.py to opa_client.cpython-312.pyc
+#33 0.322 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy_store/cedar_client.py to cedar_client.cpython-312.pyc
+#33 0.325 byte-compiling build/bdist.linux-aarch64/egg/opal_client/client.py to client.cpython-312.pyc
+#33 0.328 byte-compiling build/bdist.linux-aarch64/egg/opal_client/callbacks/__init__.py to __init__.cpython-312.pyc
+#33 0.328 byte-compiling build/bdist.linux-aarch64/egg/opal_client/callbacks/register.py to register.cpython-312.pyc
+#33 0.329 byte-compiling build/bdist.linux-aarch64/egg/opal_client/callbacks/api.py to api.cpython-312.pyc
+#33 0.330 byte-compiling build/bdist.linux-aarch64/egg/opal_client/callbacks/reporter.py to reporter.cpython-312.pyc
+#33 0.330 byte-compiling build/bdist.linux-aarch64/egg/opal_client/utils.py to utils.cpython-312.pyc
+#33 0.331 byte-compiling build/bdist.linux-aarch64/egg/opal_client/engine/logger.py to logger.cpython-312.pyc
+#33 0.332 byte-compiling build/bdist.linux-aarch64/egg/opal_client/engine/options.py to options.cpython-312.pyc
+#33 0.332 byte-compiling build/bdist.linux-aarch64/egg/opal_client/engine/__init__.py to __init__.cpython-312.pyc
+#33 0.333 byte-compiling build/bdist.linux-aarch64/egg/opal_client/engine/runner.py to runner.cpython-312.pyc
+#33 0.334 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy/options.py to options.cpython-312.pyc
+#33 0.335 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy/__init__.py to __init__.cpython-312.pyc
+#33 0.335 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy/api.py to api.cpython-312.pyc
+#33 0.335 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy/fetcher.py to fetcher.cpython-312.pyc
+#33 0.336 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy/updater.py to updater.cpython-312.pyc
+#33 0.338 byte-compiling build/bdist.linux-aarch64/egg/opal_client/policy/topics.py to topics.cpython-312.pyc
+#33 0.338 byte-compiling build/bdist.linux-aarch64/egg/opal_client/tests/data_updater_test.py to data_updater_test.cpython-312.pyc
+#33 0.340 byte-compiling build/bdist.linux-aarch64/egg/opal_client/tests/__init__.py to __init__.cpython-312.pyc
+#33 0.340 byte-compiling build/bdist.linux-aarch64/egg/opal_client/tests/opa_client_test.py to opa_client_test.cpython-312.pyc
+#33 0.341 byte-compiling build/bdist.linux-aarch64/egg/opal_client/tests/server_to_client_intergation_test.py to server_to_client_intergation_test.cpython-312.pyc
+#33 0.342 creating build/bdist.linux-aarch64/egg/EGG-INFO
+#33 0.342 copying opal_client.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
+#33 0.343 copying opal_client.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#33 0.343 copying opal_client.egg-info/dependency_links.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#33 0.343 copying opal_client.egg-info/entry_points.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#33 0.343 copying opal_client.egg-info/requires.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#33 0.343 copying opal_client.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#33 0.343 zip_safe flag not set; analyzing archive contents...
+#33 0.343 opal_client.__pycache__.cli.cpython-312: module references __file__
+#33 0.344 opal_client.__pycache__.client.cpython-312: module references __file__
+#33 0.349 opal_client.tests.__pycache__.data_updater_test.cpython-312: module references __file__
+#33 0.350 opal_client.tests.__pycache__.server_to_client_intergation_test.cpython-312: module references __file__
+#33 0.350 creating 'dist/opal_client-0.7.4-py3.12.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+#33 0.372 removing 'build/bdist.linux-aarch64/egg' (and everything under it)
+#33 0.374 Processing opal_client-0.7.4-py3.12.egg
+#33 0.375 creating /usr/local/lib/python3.12/site-packages/opal_client-0.7.4-py3.12.egg
+#33 0.375 Extracting opal_client-0.7.4-py3.12.egg to /usr/local/lib/python3.12/site-packages
+#33 0.389 /usr/local/lib/python3.12/site-packages/opal_client-0.7.4-py3.12.egg/opal_client/config.py:86: SyntaxWarning: invalid escape sequence '\*'
+#33 0.389   description="When loading policies manually or otherwise externally into the policy store, use this list of glob patterns to have OPAL ignore and not delete or override them, end paths (without any wildcards in the middle) with '\**' to indicate you want all nested under the path to be ignored",
+#33 0.428 Adding opal-client 0.7.4 to easy-install.pth file
+#33 0.428 Installing opal-client script to /usr/local/bin
+#33 0.428 
+#33 0.428 Installed /usr/local/lib/python3.12/site-packages/opal_client-0.7.4-py3.12.egg
+#33 0.428 Processing dependencies for opal-client==0.7.4
+#33 0.500 Searching for setuptools==69.0.2
+#33 0.500 Best match: setuptools 69.0.2
+#33 0.500 Adding setuptools 69.0.2 to easy-install.pth file
+#33 0.500 detected new path './opal_client-0.7.4-py3.12.egg'
+#33 0.501 
+#33 0.501 Using /usr/local/lib/python3.12/site-packages
+#33 0.501 Searching for fastapi-utils==0.2.1
+#33 0.501 Best match: fastapi-utils 0.2.1
+#33 0.501 Adding fastapi-utils 0.2.1 to easy-install.pth file
+#33 0.502 
+#33 0.502 Using /usr/local/lib/python3.12/site-packages
+#33 0.502 Searching for uvicorn==0.25.0
+#33 0.502 Best match: uvicorn 0.25.0
+#33 0.502 Adding uvicorn 0.25.0 to easy-install.pth file
+#33 0.503 Installing uvicorn script to /usr/local/bin
+#33 0.503 
+#33 0.503 Using /usr/local/lib/python3.12/site-packages
+#33 0.503 Searching for pydantic==1.10.13
+#33 0.503 Best match: pydantic 1.10.13
+#33 0.503 Adding pydantic 1.10.13 to easy-install.pth file
+#33 0.503 
+#33 0.503 Using /usr/local/lib/python3.12/site-packages
+#33 0.504 Searching for gunicorn==20.1.0
+#33 0.504 Best match: gunicorn 20.1.0
+#33 0.504 Adding gunicorn 20.1.0 to easy-install.pth file
+#33 0.504 Installing gunicorn script to /usr/local/bin
+#33 0.504 
+#33 0.504 Using /usr/local/lib/python3.12/site-packages
+#33 0.505 Searching for fastapi-websocket-rpc==0.1.25
+#33 0.505 Best match: fastapi-websocket-rpc 0.1.25
+#33 0.505 Adding fastapi-websocket-rpc 0.1.25 to easy-install.pth file
+#33 0.505 
+#33 0.505 Using /usr/local/lib/python3.12/site-packages
+#33 0.505 Searching for fastapi-websocket-pubsub==0.3.4
+#33 0.506 Best match: fastapi-websocket-pubsub 0.3.4
+#33 0.506 Adding fastapi-websocket-pubsub 0.3.4 to easy-install.pth file
+#33 0.506 
+#33 0.506 Using /usr/local/lib/python3.12/site-packages
+#33 0.506 Searching for fastapi==0.108.0
+#33 0.506 Best match: fastapi 0.108.0
+#33 0.506 Adding fastapi 0.108.0 to easy-install.pth file
+#33 0.507 
+#33 0.507 Using /usr/local/lib/python3.12/site-packages
+#33 0.507 Searching for typer==0.9.0
+#33 0.507 Best match: typer 0.9.0
+#33 0.507 Adding typer 0.9.0 to easy-install.pth file
+#33 0.507 
+#33 0.507 Using /usr/local/lib/python3.12/site-packages
+#33 0.508 Searching for idna==3.6
+#33 0.508 Best match: idna 3.6
+#33 0.508 Adding idna 3.6 to easy-install.pth file
+#33 0.508 
+#33 0.508 Using /usr/local/lib/python3.12/site-packages
+#33 0.508 Searching for charset-normalizer==2.1.1
+#33 0.508 Best match: charset-normalizer 2.1.1
+#33 0.508 Adding charset-normalizer 2.1.1 to easy-install.pth file
+#33 0.509 Installing normalizer script to /usr/local/bin
+#33 0.509 
+#33 0.509 Using /usr/local/lib/python3.12/site-packages
+#33 0.509 Searching for opal-common==0.7.4
+#33 0.509 Best match: opal-common 0.7.4
+#33 0.509 Processing opal_common-0.7.4-py3.12.egg
+#33 0.509 Adding opal-common 0.7.4 to easy-install.pth file
+#33 0.510 
+#33 0.510 Using /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg
+#33 0.510 Searching for jsonpatch==1.33
+#33 0.510 Best match: jsonpatch 1.33
+#33 0.510 Adding jsonpatch 1.33 to easy-install.pth file
+#33 0.511 
+#33 0.511 Using /usr/local/lib/python3.12/site-packages
+#33 0.511 Searching for dpath==2.1.6
+#33 0.511 Best match: dpath 2.1.6
+#33 0.511 Adding dpath 2.1.6 to easy-install.pth file
+#33 0.512 
+#33 0.512 Using /usr/local/lib/python3.12/site-packages
+#33 0.512 Searching for websockets==10.4
+#33 0.512 Best match: websockets 10.4
+#33 0.512 Adding websockets 10.4 to easy-install.pth file
+#33 0.512 
+#33 0.512 Using /usr/local/lib/python3.12/site-packages
+#33 0.512 Searching for tenacity==8.2.3
+#33 0.512 Best match: tenacity 8.2.3
+#33 0.512 Adding tenacity 8.2.3 to easy-install.pth file
+#33 0.513 
+#33 0.513 Using /usr/local/lib/python3.12/site-packages
+#33 0.513 Searching for psutil==5.9.7
+#33 0.513 Best match: psutil 5.9.7
+#33 0.513 Adding psutil 5.9.7 to easy-install.pth file
+#33 0.513 
+#33 0.513 Using /usr/local/lib/python3.12/site-packages
+#33 0.513 Searching for aiohttp==3.9.1
+#33 0.514 Best match: aiohttp 3.9.1
+#33 0.514 Adding aiohttp 3.9.1 to easy-install.pth file
+#33 0.514 
+#33 0.514 Using /usr/local/lib/python3.12/site-packages
+#33 0.514 Searching for aiofiles==0.8.0
+#33 0.514 Best match: aiofiles 0.8.0
+#33 0.514 Adding aiofiles 0.8.0 to easy-install.pth file
+#33 0.515 
+#33 0.515 Using /usr/local/lib/python3.12/site-packages
+#33 0.515 Searching for SQLAlchemy==1.4.51
+#33 0.515 Best match: SQLAlchemy 1.4.51
+#33 0.515 Adding SQLAlchemy 1.4.51 to easy-install.pth file
+#33 0.516 
+#33 0.516 Using /usr/local/lib/python3.12/site-packages
+#33 0.516 Searching for watchfiles==0.21.0
+#33 0.516 Best match: watchfiles 0.21.0
+#33 0.516 Adding watchfiles 0.21.0 to easy-install.pth file
+#33 0.516 Installing watchfiles script to /usr/local/bin
+#33 0.517 
+#33 0.517 Using /usr/local/lib/python3.12/site-packages
+#33 0.517 Searching for uvloop==0.19.0
+#33 0.517 Best match: uvloop 0.19.0
+#33 0.517 Adding uvloop 0.19.0 to easy-install.pth file
+#33 0.518 
+#33 0.518 Using /usr/local/lib/python3.12/site-packages
+#33 0.518 Searching for PyYAML==6.0.1
+#33 0.518 Best match: PyYAML 6.0.1
+#33 0.518 Adding PyYAML 6.0.1 to easy-install.pth file
+#33 0.518 
+#33 0.518 Using /usr/local/lib/python3.12/site-packages
+#33 0.518 Searching for python-dotenv==1.0.0
+#33 0.519 Best match: python-dotenv 1.0.0
+#33 0.519 Adding python-dotenv 1.0.0 to easy-install.pth file
+#33 0.519 Installing dotenv script to /usr/local/bin
+#33 0.519 
+#33 0.519 Using /usr/local/lib/python3.12/site-packages
+#33 0.519 Searching for httptools==0.6.1
+#33 0.519 Best match: httptools 0.6.1
+#33 0.519 Adding httptools 0.6.1 to easy-install.pth file
+#33 0.520 
+#33 0.520 Using /usr/local/lib/python3.12/site-packages
+#33 0.520 Searching for h11==0.14.0
+#33 0.520 Best match: h11 0.14.0
+#33 0.520 Adding h11 0.14.0 to easy-install.pth file
+#33 0.521 
+#33 0.521 Using /usr/local/lib/python3.12/site-packages
+#33 0.521 Searching for click==8.1.7
+#33 0.521 Best match: click 8.1.7
+#33 0.521 Adding click 8.1.7 to easy-install.pth file
+#33 0.521 
+#33 0.521 Using /usr/local/lib/python3.12/site-packages
+#33 0.522 Searching for email-validator==2.1.0.post1
+#33 0.522 Best match: email-validator 2.1.0.post1
+#33 0.522 Adding email-validator 2.1.0.post1 to easy-install.pth file
+#33 0.522 Installing email_validator script to /usr/local/bin
+#33 0.522 
+#33 0.522 Using /usr/local/lib/python3.12/site-packages
+#33 0.523 Searching for typing-extensions==4.9.0
+#33 0.523 Best match: typing-extensions 4.9.0
+#33 0.523 Adding typing-extensions 4.9.0 to easy-install.pth file
+#33 0.523 
+#33 0.523 Using /usr/local/lib/python3.12/site-packages
+#33 0.523 Searching for packaging==23.2
+#33 0.523 Best match: packaging 23.2
+#33 0.523 Adding packaging 23.2 to easy-install.pth file
+#33 0.524 
+#33 0.524 Using /usr/local/lib/python3.12/site-packages
+#33 0.524 Searching for permit-broadcaster==0.2.3
+#33 0.524 Best match: permit-broadcaster 0.2.3
+#33 0.524 Adding permit-broadcaster 0.2.3 to easy-install.pth file
+#33 0.524 
+#33 0.524 Using /usr/local/lib/python3.12/site-packages
+#33 0.524 Searching for starlette==0.32.0.post1
+#33 0.525 Best match: starlette 0.32.0.post1
+#33 0.525 Adding starlette 0.32.0.post1 to easy-install.pth file
+#33 0.525 
+#33 0.525 Using /usr/local/lib/python3.12/site-packages
+#33 0.525 Searching for python-decouple==3.8
+#33 0.525 Best match: python-decouple 3.8
+#33 0.525 Adding python-decouple 3.8 to easy-install.pth file
+#33 0.526 
+#33 0.526 Using /usr/local/lib/python3.12/site-packages
+#33 0.526 Searching for PyJWT==2.8.0
+#33 0.526 Best match: PyJWT 2.8.0
+#33 0.526 Adding PyJWT 2.8.0 to easy-install.pth file
+#33 0.527 
+#33 0.527 Using /usr/local/lib/python3.12/site-packages
+#33 0.527 Searching for loguru==0.7.2
+#33 0.527 Best match: loguru 0.7.2
+#33 0.527 Adding loguru 0.7.2 to easy-install.pth file
+#33 0.527 
+#33 0.527 Using /usr/local/lib/python3.12/site-packages
+#33 0.527 Searching for GitPython==3.1.40
+#33 0.527 Best match: GitPython 3.1.40
+#33 0.527 Adding GitPython 3.1.40 to easy-install.pth file
+#33 0.528 
+#33 0.528 Using /usr/local/lib/python3.12/site-packages
+#33 0.528 Searching for cryptography==41.0.7
+#33 0.528 Best match: cryptography 41.0.7
+#33 0.528 Adding cryptography 41.0.7 to easy-install.pth file
+#33 0.529 
+#33 0.529 Using /usr/local/lib/python3.12/site-packages
+#33 0.529 Searching for jsonpointer==2.4
+#33 0.529 Best match: jsonpointer 2.4
+#33 0.529 Adding jsonpointer 2.4 to easy-install.pth file
+#33 0.529 
+#33 0.529 Using /usr/local/lib/python3.12/site-packages
+#33 0.530 Searching for aiosignal==1.3.1
+#33 0.530 Best match: aiosignal 1.3.1
+#33 0.530 Adding aiosignal 1.3.1 to easy-install.pth file
+#33 0.530 
+#33 0.530 Using /usr/local/lib/python3.12/site-packages
+#33 0.531 Searching for frozenlist==1.4.1
+#33 0.531 Best match: frozenlist 1.4.1
+#33 0.531 Adding frozenlist 1.4.1 to easy-install.pth file
+#33 0.531 
+#33 0.531 Using /usr/local/lib/python3.12/site-packages
+#33 0.531 Searching for yarl==1.9.4
+#33 0.531 Best match: yarl 1.9.4
+#33 0.531 Adding yarl 1.9.4 to easy-install.pth file
+#33 0.532 
+#33 0.532 Using /usr/local/lib/python3.12/site-packages
+#33 0.532 Searching for multidict==6.0.4
+#33 0.532 Best match: multidict 6.0.4
+#33 0.532 Adding multidict 6.0.4 to easy-install.pth file
+#33 0.532 
+#33 0.532 Using /usr/local/lib/python3.12/site-packages
+#33 0.533 Searching for attrs==23.2.0
+#33 0.533 Best match: attrs 23.2.0
+#33 0.533 Adding attrs 23.2.0 to easy-install.pth file
+#33 0.533 
+#33 0.533 Using /usr/local/lib/python3.12/site-packages
+#33 0.533 Searching for greenlet==3.0.3
+#33 0.533 Best match: greenlet 3.0.3
+#33 0.533 Adding greenlet 3.0.3 to easy-install.pth file
+#33 0.534 
+#33 0.534 Using /usr/local/lib/python3.12/site-packages
+#33 0.534 Searching for anyio==4.2.0
+#33 0.534 Best match: anyio 4.2.0
+#33 0.534 Adding anyio 4.2.0 to easy-install.pth file
+#33 0.534 
+#33 0.534 Using /usr/local/lib/python3.12/site-packages
+#33 0.535 Searching for dnspython==2.4.2
+#33 0.535 Best match: dnspython 2.4.2
+#33 0.535 Adding dnspython 2.4.2 to easy-install.pth file
+#33 0.535 
+#33 0.535 Using /usr/local/lib/python3.12/site-packages
+#33 0.535 Searching for aiokafka==0.10.0
+#33 0.535 Best match: aiokafka 0.10.0
+#33 0.535 Adding aiokafka 0.10.0 to easy-install.pth file
+#33 0.536 
+#33 0.536 Using /usr/local/lib/python3.12/site-packages
+#33 0.536 Searching for asyncio-redis==0.16.0
+#33 0.536 Best match: asyncio-redis 0.16.0
+#33 0.536 Adding asyncio-redis 0.16.0 to easy-install.pth file
+#33 0.536 
+#33 0.536 Using /usr/local/lib/python3.12/site-packages
+#33 0.536 Searching for asyncpg==0.29.0
+#33 0.536 Best match: asyncpg 0.29.0
+#33 0.537 Adding asyncpg 0.29.0 to easy-install.pth file
+#33 0.537 
+#33 0.537 Using /usr/local/lib/python3.12/site-packages
+#33 0.537 Searching for gitdb==4.0.11
+#33 0.537 Best match: gitdb 4.0.11
+#33 0.537 Adding gitdb 4.0.11 to easy-install.pth file
+#33 0.538 
+#33 0.538 Using /usr/local/lib/python3.12/site-packages
+#33 0.538 Searching for cffi==1.16.0
+#33 0.538 Best match: cffi 1.16.0
+#33 0.538 Adding cffi 1.16.0 to easy-install.pth file
+#33 0.538 
+#33 0.538 Using /usr/local/lib/python3.12/site-packages
+#33 0.538 Searching for sniffio==1.3.0
+#33 0.538 Best match: sniffio 1.3.0
+#33 0.539 Adding sniffio 1.3.0 to easy-install.pth file
+#33 0.539 
+#33 0.539 Using /usr/local/lib/python3.12/site-packages
+#33 0.539 Searching for async-timeout==4.0.3
+#33 0.539 Best match: async-timeout 4.0.3
+#33 0.539 Adding async-timeout 4.0.3 to easy-install.pth file
+#33 0.540 
+#33 0.540 Using /usr/local/lib/python3.12/site-packages
+#33 0.540 Searching for smmap==5.0.1
+#33 0.540 Best match: smmap 5.0.1
+#33 0.540 Adding smmap 5.0.1 to easy-install.pth file
+#33 0.541 
+#33 0.541 Using /usr/local/lib/python3.12/site-packages
+#33 0.541 Searching for pycparser==2.21
+#33 0.541 Best match: pycparser 2.21
+#33 0.541 Adding pycparser 2.21 to easy-install.pth file
+#33 0.541 
+#33 0.541 Using /usr/local/lib/python3.12/site-packages
+#33 0.541 Finished processing dependencies for opal-client==0.7.4
+#33 DONE 0.6s
+
+#34 [client-standalone 2/2] RUN mkdir -p /opal/backup
+#34 DONE 0.3s
+
+#35 [client 1/1] COPY --from=opa-extractor /opal/opa ./opa
+#35 DONE 0.1s
+
+#36 exporting to image
+#36 exporting layers 0.1s done
+#36 writing image sha256:5ac16dfa6e061845452b8c0611cacea749ddc145a91ce9c183fd6e1dbe0673e3 done
+#36 naming to docker.io/library/opal-client:local done
+#36 DONE 0.1s
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load .dockerignore
+#1 transferring context: 73B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 7.36kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:alpine3.19
+#3 DONE 0.1s
+
+#4 [buildstage 1/8] FROM docker.io/library/python:alpine3.19@sha256:c793b92fd9e0e2a0b611756788a033d569ca864b733461c8fb30cfd14847dbcf
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 127.54kB 0.0s done
+#5 DONE 0.0s
+
+#6 [common 10/16] RUN apk update && apk add netcat-openbsd jq libgit2-dev
+#6 CACHED
+
+#7 [buildstage 6/8] COPY ./packages/opal-server/requires.txt ./server_requires.txt
+#7 CACHED
+
+#8 [common 12/16] RUN chmod +x ./start.sh
+#8 CACHED
+
+#9 [common 13/16] RUN ln -s /opal/start.sh /start.sh
+#9 CACHED
+
+#10 [common  4/16] RUN adduser -s /bin/bash -h /opal --disabled-password opal
+#10 CACHED
+
+#11 [common  5/16] WORKDIR /opal
+#11 CACHED
+
+#12 [buildstage 5/8] COPY ./packages/opal-client/requires.txt ./client_requires.txt
+#12 CACHED
+
+#13 [buildstage 8/8] RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r ./base_requires.txt -r ./common_requires.txt -r ./client_requires.txt -r ./server_requires.txt
+#13 CACHED
+
+#14 [common  9/16] RUN ln -s /opal/wait-for.sh /usr/wait-for.sh
+#14 CACHED
+
+#15 [buildstage 2/8] WORKDIR /app/
+#15 CACHED
+
+#16 [common  7/16] COPY scripts/wait-for.sh .
+#16 CACHED
+
+#17 [common  8/16] RUN chmod +x ./wait-for.sh
+#17 CACHED
+
+#18 [common  2/16] COPY --from=BuildStage /usr/local /usr/local
+#18 CACHED
+
+#19 [buildstage 7/8] RUN apk add gcc musl-dev linux-headers python3-dev zlib-dev libffi-dev libgit2-dev
+#19 CACHED
+
+#20 [buildstage 3/8] COPY ./packages/requires.txt ./base_requires.txt
+#20 CACHED
+
+#21 [common  3/16] COPY --from=BuildStage /etc/apk/repositories /etc/apk/repositories
+#21 CACHED
+
+#22 [common 11/16] COPY ./scripts/start.sh .
+#22 CACHED
+
+#23 [common  6/16] RUN apk add bash
+#23 CACHED
+
+#24 [buildstage 4/8] COPY ./packages/opal-common/requires.txt ./common_requires.txt
+#24 CACHED
+
+#25 [common 14/16] COPY ./scripts/gunicorn_conf.py .
+#25 CACHED
+
+#26 [common 15/16] COPY . ./
+#26 DONE 0.1s
+
+#27 [common 16/16] RUN cd ./packages/opal-common && python setup.py install
+#27 0.190 /opal/packages
+#27 0.190 running install
+#27 0.190 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+#27 0.190 !!
+#27 0.190 
+#27 0.190         ********************************************************************************
+#27 0.190         Please avoid running ``setup.py`` directly.
+#27 0.190         Instead, use pypa/build, pypa/installer or other
+#27 0.190         standards-based tools.
+#27 0.190 
+#27 0.190         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+#27 0.190         ********************************************************************************
+#27 0.190 
+#27 0.190 !!
+#27 0.190   self.initialize_options()
+#27 0.259 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+#27 0.259 !!
+#27 0.259 
+#27 0.259         ********************************************************************************
+#27 0.259         Please avoid running ``setup.py`` and ``easy_install``.
+#27 0.259         Instead, use pypa/build, pypa/installer or other
+#27 0.259         standards-based tools.
+#27 0.259 
+#27 0.259         See https://github.com/pypa/setuptools/issues/917 for details.
+#27 0.259         ********************************************************************************
+#27 0.259 
+#27 0.259 !!
+#27 0.259   self.initialize_options()
+#27 0.279 running bdist_egg
+#27 0.286 running egg_info
+#27 0.289 writing opal_common.egg-info/PKG-INFO
+#27 0.289 writing dependency_links to opal_common.egg-info/dependency_links.txt
+#27 0.290 writing requirements to opal_common.egg-info/requires.txt
+#27 0.290 writing top-level names to opal_common.egg-info/top_level.txt
+#27 0.297 reading manifest file 'opal_common.egg-info/SOURCES.txt'
+#27 0.298 writing manifest file 'opal_common.egg-info/SOURCES.txt'
+#27 0.298 installing library code to build/bdist.linux-aarch64/egg
+#27 0.298 running install_lib
+#27 0.298 running build_py
+#27 0.298 copying opal_common/logger.py -> build/lib/opal_common
+#27 0.299 copying opal_common/paths.py -> build/lib/opal_common
+#27 0.299 copying opal_common/__init__.py -> build/lib/opal_common
+#27 0.299 copying opal_common/corn_utils.py -> build/lib/opal_common
+#27 0.299 copying opal_common/config.py -> build/lib/opal_common
+#27 0.299 copying opal_common/async_utils.py -> build/lib/opal_common
+#27 0.299 copying opal_common/middleware.py -> build/lib/opal_common
+#27 0.300 copying opal_common/urls.py -> build/lib/opal_common
+#27 0.300 copying opal_common/http.py -> build/lib/opal_common
+#27 0.300 copying opal_common/utils.py -> build/lib/opal_common
+#27 0.300 copying opal_common/emport.py -> build/lib/opal_common
+#27 0.300 copying opal_common/synchronization/__init__.py -> build/lib/opal_common/synchronization
+#27 0.300 copying opal_common/synchronization/named_lock.py -> build/lib/opal_common/synchronization
+#27 0.301 copying opal_common/synchronization/expiring_redis_lock.py -> build/lib/opal_common/synchronization
+#27 0.301 copying opal_common/cli/docs.py -> build/lib/opal_common/cli
+#27 0.301 copying opal_common/cli/__init__.py -> build/lib/opal_common/cli
+#27 0.301 copying opal_common/cli/typer_app.py -> build/lib/opal_common/cli
+#27 0.301 copying opal_common/cli/commands.py -> build/lib/opal_common/cli
+#27 0.301 copying opal_common/logging/__init__.py -> build/lib/opal_common/logging
+#27 0.302 copying opal_common/logging/intercept.py -> build/lib/opal_common/logging
+#27 0.302 copying opal_common/logging/thirdparty.py -> build/lib/opal_common/logging
+#27 0.302 copying opal_common/logging/filter.py -> build/lib/opal_common/logging
+#27 0.302 copying opal_common/logging/decorators.py -> build/lib/opal_common/logging
+#27 0.302 copying opal_common/logging/formatter.py -> build/lib/opal_common/logging
+#27 0.302 copying opal_common/schemas/__init__.py -> build/lib/opal_common/schemas
+#27 0.303 copying opal_common/schemas/data.py -> build/lib/opal_common/schemas
+#27 0.303 copying opal_common/schemas/policy_source.py -> build/lib/opal_common/schemas
+#27 0.303 copying opal_common/schemas/policy.py -> build/lib/opal_common/schemas
+#27 0.303 copying opal_common/schemas/security.py -> build/lib/opal_common/schemas
+#27 0.303 copying opal_common/schemas/scopes.py -> build/lib/opal_common/schemas
+#27 0.304 copying opal_common/schemas/store.py -> build/lib/opal_common/schemas
+#27 0.304 copying opal_common/schemas/webhook.py -> build/lib/opal_common/schemas
+#27 0.304 copying opal_common/fetcher/logger.py -> build/lib/opal_common/fetcher
+#27 0.304 copying opal_common/fetcher/__init__.py -> build/lib/opal_common/fetcher
+#27 0.304 copying opal_common/fetcher/events.py -> build/lib/opal_common/fetcher
+#27 0.304 copying opal_common/fetcher/fetch_provider.py -> build/lib/opal_common/fetcher
+#27 0.304 copying opal_common/fetcher/fetcher_register.py -> build/lib/opal_common/fetcher
+#27 0.305 copying opal_common/git/__init__.py -> build/lib/opal_common/git
+#27 0.305 copying opal_common/git/bundle_utils.py -> build/lib/opal_common/git
+#27 0.305 copying opal_common/git/branch_tracker.py -> build/lib/opal_common/git
+#27 0.305 copying opal_common/git/commit_viewer.py -> build/lib/opal_common/git
+#27 0.305 copying opal_common/git/exceptions.py -> build/lib/opal_common/git
+#27 0.305 copying opal_common/git/repo_cloner.py -> build/lib/opal_common/git
+#27 0.306 copying opal_common/git/diff_viewer.py -> build/lib/opal_common/git
+#27 0.306 copying opal_common/git/tar_file_to_local_git_extractor.py -> build/lib/opal_common/git
+#27 0.306 copying opal_common/git/bundle_maker.py -> build/lib/opal_common/git
+#27 0.306 copying opal_common/git/env.py -> build/lib/opal_common/git
+#27 0.306 copying opal_common/authentication/__init__.py -> build/lib/opal_common/authentication
+#27 0.306 copying opal_common/authentication/verifier.py -> build/lib/opal_common/authentication
+#27 0.306 copying opal_common/authentication/types.py -> build/lib/opal_common/authentication
+#27 0.307 copying opal_common/authentication/casting.py -> build/lib/opal_common/authentication
+#27 0.307 copying opal_common/authentication/authz.py -> build/lib/opal_common/authentication
+#27 0.307 copying opal_common/authentication/signer.py -> build/lib/opal_common/authentication
+#27 0.307 copying opal_common/authentication/deps.py -> build/lib/opal_common/authentication
+#27 0.307 copying opal_common/topics/listener.py -> build/lib/opal_common/topics
+#27 0.307 copying opal_common/topics/__init__.py -> build/lib/opal_common/topics
+#27 0.307 copying opal_common/topics/publisher.py -> build/lib/opal_common/topics
+#27 0.307 copying opal_common/topics/utils.py -> build/lib/opal_common/topics
+#27 0.308 copying opal_common/sources/__init__.py -> build/lib/opal_common/sources
+#27 0.308 copying opal_common/sources/api_policy_source.py -> build/lib/opal_common/sources
+#27 0.308 copying opal_common/sources/git_policy_source.py -> build/lib/opal_common/sources
+#27 0.308 copying opal_common/sources/base_policy_source.py -> build/lib/opal_common/sources
+#27 0.308 copying opal_common/confi/__init__.py -> build/lib/opal_common/confi
+#27 0.309 copying opal_common/confi/cli.py -> build/lib/opal_common/confi
+#27 0.309 copying opal_common/confi/types.py -> build/lib/opal_common/confi
+#27 0.309 copying opal_common/confi/confi.py -> build/lib/opal_common/confi
+#27 0.309 copying opal_common/engine/paths.py -> build/lib/opal_common/engine
+#27 0.309 copying opal_common/engine/parsing.py -> build/lib/opal_common/engine
+#27 0.309 copying opal_common/engine/__init__.py -> build/lib/opal_common/engine
+#27 0.309 copying opal_common/tests/__init__.py -> build/lib/opal_common/tests
+#27 0.309 copying opal_common/tests/url_utils_test.py -> build/lib/opal_common/tests
+#27 0.310 copying opal_common/tests/path_utils_test.py -> build/lib/opal_common/tests
+#27 0.310 copying opal_common/security/__init__.py -> build/lib/opal_common/security
+#27 0.310 copying opal_common/security/tarsafe.py -> build/lib/opal_common/security
+#27 0.310 copying opal_common/security/sslcontext.py -> build/lib/opal_common/security
+#27 0.310 copying opal_common/fetcher/providers/http_fetch_provider.py -> build/lib/opal_common/fetcher/providers
+#27 0.310 copying opal_common/fetcher/providers/__init__.py -> build/lib/opal_common/fetcher/providers
+#27 0.310 copying opal_common/fetcher/providers/fastapi_rpc_fetch_provider.py -> build/lib/opal_common/fetcher/providers
+#27 0.311 copying opal_common/fetcher/engine/__init__.py -> build/lib/opal_common/fetcher/engine
+#27 0.311 copying opal_common/fetcher/engine/fetch_worker.py -> build/lib/opal_common/fetcher/engine
+#27 0.311 copying opal_common/fetcher/engine/base_fetching_engine.py -> build/lib/opal_common/fetcher/engine
+#27 0.311 copying opal_common/fetcher/engine/core_callbacks.py -> build/lib/opal_common/fetcher/engine
+#27 0.311 copying opal_common/fetcher/engine/fetching_engine.py -> build/lib/opal_common/fetcher/engine
+#27 0.311 copying opal_common/fetcher/tests/rpc_fetch_test.py -> build/lib/opal_common/fetcher/tests
+#27 0.311 copying opal_common/fetcher/tests/__init__.py -> build/lib/opal_common/fetcher/tests
+#27 0.312 copying opal_common/fetcher/tests/http_fetch_test.py -> build/lib/opal_common/fetcher/tests
+#27 0.312 copying opal_common/fetcher/tests/failure_handler_test.py -> build/lib/opal_common/fetcher/tests
+#27 0.312 copying opal_common/authentication/tests/jwt_signer_test.py -> build/lib/opal_common/authentication/tests
+#27 0.312 copying opal_common/authentication/tests/__init__.py -> build/lib/opal_common/authentication/tests
+#27 0.313 copying opal_common/engine/py.typed -> build/lib/opal_common/engine
+#27 0.314 creating build/bdist.linux-aarch64
+#27 0.314 creating build/bdist.linux-aarch64/egg
+#27 0.314 creating build/bdist.linux-aarch64/egg/opal_common
+#27 0.314 copying build/lib/opal_common/logger.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.314 creating build/bdist.linux-aarch64/egg/opal_common/synchronization
+#27 0.314 copying build/lib/opal_common/synchronization/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/synchronization
+#27 0.314 copying build/lib/opal_common/synchronization/named_lock.py -> build/bdist.linux-aarch64/egg/opal_common/synchronization
+#27 0.314 copying build/lib/opal_common/synchronization/expiring_redis_lock.py -> build/bdist.linux-aarch64/egg/opal_common/synchronization
+#27 0.314 creating build/bdist.linux-aarch64/egg/opal_common/cli
+#27 0.314 copying build/lib/opal_common/cli/docs.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#27 0.314 copying build/lib/opal_common/cli/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#27 0.315 copying build/lib/opal_common/cli/typer_app.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#27 0.315 copying build/lib/opal_common/cli/commands.py -> build/bdist.linux-aarch64/egg/opal_common/cli
+#27 0.315 creating build/bdist.linux-aarch64/egg/opal_common/logging
+#27 0.315 copying build/lib/opal_common/logging/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#27 0.315 copying build/lib/opal_common/logging/intercept.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#27 0.315 copying build/lib/opal_common/logging/thirdparty.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#27 0.315 copying build/lib/opal_common/logging/filter.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#27 0.315 copying build/lib/opal_common/logging/decorators.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#27 0.315 copying build/lib/opal_common/logging/formatter.py -> build/bdist.linux-aarch64/egg/opal_common/logging
+#27 0.315 copying build/lib/opal_common/paths.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.316 creating build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/data.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/policy.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/security.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/scopes.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/store.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 copying build/lib/opal_common/schemas/webhook.py -> build/bdist.linux-aarch64/egg/opal_common/schemas
+#27 0.316 creating build/bdist.linux-aarch64/egg/opal_common/fetcher
+#27 0.316 copying build/lib/opal_common/fetcher/logger.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#27 0.317 copying build/lib/opal_common/fetcher/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#27 0.317 creating build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#27 0.317 copying build/lib/opal_common/fetcher/providers/http_fetch_provider.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#27 0.317 copying build/lib/opal_common/fetcher/providers/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#27 0.317 copying build/lib/opal_common/fetcher/providers/fastapi_rpc_fetch_provider.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/providers
+#27 0.317 copying build/lib/opal_common/fetcher/events.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#27 0.317 copying build/lib/opal_common/fetcher/fetch_provider.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#27 0.318 creating build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#27 0.318 copying build/lib/opal_common/fetcher/engine/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#27 0.318 copying build/lib/opal_common/fetcher/engine/fetch_worker.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#27 0.318 copying build/lib/opal_common/fetcher/engine/base_fetching_engine.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#27 0.318 copying build/lib/opal_common/fetcher/engine/core_callbacks.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#27 0.318 copying build/lib/opal_common/fetcher/engine/fetching_engine.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/engine
+#27 0.318 copying build/lib/opal_common/fetcher/fetcher_register.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher
+#27 0.318 creating build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#27 0.318 copying build/lib/opal_common/fetcher/tests/rpc_fetch_test.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#27 0.318 copying build/lib/opal_common/fetcher/tests/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#27 0.318 copying build/lib/opal_common/fetcher/tests/http_fetch_test.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#27 0.318 copying build/lib/opal_common/fetcher/tests/failure_handler_test.py -> build/bdist.linux-aarch64/egg/opal_common/fetcher/tests
+#27 0.318 copying build/lib/opal_common/__init__.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.319 creating build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/bundle_utils.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/branch_tracker.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/commit_viewer.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/exceptions.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/repo_cloner.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/diff_viewer.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/tar_file_to_local_git_extractor.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/bundle_maker.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.319 copying build/lib/opal_common/git/env.py -> build/bdist.linux-aarch64/egg/opal_common/git
+#27 0.320 copying build/lib/opal_common/corn_utils.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.320 copying build/lib/opal_common/config.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.320 copying build/lib/opal_common/async_utils.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.320 copying build/lib/opal_common/middleware.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.320 creating build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.320 copying build/lib/opal_common/authentication/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.320 copying build/lib/opal_common/authentication/verifier.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.320 copying build/lib/opal_common/authentication/types.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.320 copying build/lib/opal_common/authentication/casting.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.320 copying build/lib/opal_common/authentication/authz.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.320 copying build/lib/opal_common/authentication/signer.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.321 creating build/bdist.linux-aarch64/egg/opal_common/authentication/tests
+#27 0.321 copying build/lib/opal_common/authentication/tests/jwt_signer_test.py -> build/bdist.linux-aarch64/egg/opal_common/authentication/tests
+#27 0.321 copying build/lib/opal_common/authentication/tests/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/authentication/tests
+#27 0.321 copying build/lib/opal_common/authentication/deps.py -> build/bdist.linux-aarch64/egg/opal_common/authentication
+#27 0.321 creating build/bdist.linux-aarch64/egg/opal_common/topics
+#27 0.321 copying build/lib/opal_common/topics/listener.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#27 0.321 copying build/lib/opal_common/topics/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#27 0.321 copying build/lib/opal_common/topics/publisher.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#27 0.322 copying build/lib/opal_common/topics/utils.py -> build/bdist.linux-aarch64/egg/opal_common/topics
+#27 0.322 copying build/lib/opal_common/urls.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.322 copying build/lib/opal_common/http.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.322 creating build/bdist.linux-aarch64/egg/opal_common/sources
+#27 0.322 copying build/lib/opal_common/sources/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#27 0.322 copying build/lib/opal_common/sources/api_policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#27 0.322 copying build/lib/opal_common/sources/git_policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#27 0.322 copying build/lib/opal_common/sources/base_policy_source.py -> build/bdist.linux-aarch64/egg/opal_common/sources
+#27 0.322 creating build/bdist.linux-aarch64/egg/opal_common/confi
+#27 0.323 copying build/lib/opal_common/confi/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#27 0.323 copying build/lib/opal_common/confi/cli.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#27 0.323 copying build/lib/opal_common/confi/types.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#27 0.323 copying build/lib/opal_common/confi/confi.py -> build/bdist.linux-aarch64/egg/opal_common/confi
+#27 0.323 copying build/lib/opal_common/utils.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.323 creating build/bdist.linux-aarch64/egg/opal_common/engine
+#27 0.323 copying build/lib/opal_common/engine/paths.py -> build/bdist.linux-aarch64/egg/opal_common/engine
+#27 0.323 copying build/lib/opal_common/engine/parsing.py -> build/bdist.linux-aarch64/egg/opal_common/engine
+#27 0.323 copying build/lib/opal_common/engine/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/engine
+#27 0.323 copying build/lib/opal_common/engine/py.typed -> build/bdist.linux-aarch64/egg/opal_common/engine
+#27 0.323 creating build/bdist.linux-aarch64/egg/opal_common/tests
+#27 0.323 copying build/lib/opal_common/tests/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/tests
+#27 0.324 copying build/lib/opal_common/tests/url_utils_test.py -> build/bdist.linux-aarch64/egg/opal_common/tests
+#27 0.324 copying build/lib/opal_common/tests/path_utils_test.py -> build/bdist.linux-aarch64/egg/opal_common/tests
+#27 0.324 creating build/bdist.linux-aarch64/egg/opal_common/security
+#27 0.324 copying build/lib/opal_common/security/__init__.py -> build/bdist.linux-aarch64/egg/opal_common/security
+#27 0.324 copying build/lib/opal_common/security/tarsafe.py -> build/bdist.linux-aarch64/egg/opal_common/security
+#27 0.324 copying build/lib/opal_common/security/sslcontext.py -> build/bdist.linux-aarch64/egg/opal_common/security
+#27 0.324 copying build/lib/opal_common/emport.py -> build/bdist.linux-aarch64/egg/opal_common
+#27 0.325 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logger.py to logger.cpython-312.pyc
+#27 0.325 byte-compiling build/bdist.linux-aarch64/egg/opal_common/synchronization/__init__.py to __init__.cpython-312.pyc
+#27 0.325 byte-compiling build/bdist.linux-aarch64/egg/opal_common/synchronization/named_lock.py to named_lock.cpython-312.pyc
+#27 0.326 byte-compiling build/bdist.linux-aarch64/egg/opal_common/synchronization/expiring_redis_lock.py to expiring_redis_lock.cpython-312.pyc
+#27 0.326 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/docs.py to docs.cpython-312.pyc
+#27 0.326 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/__init__.py to __init__.cpython-312.pyc
+#27 0.326 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/typer_app.py to typer_app.cpython-312.pyc
+#27 0.327 byte-compiling build/bdist.linux-aarch64/egg/opal_common/cli/commands.py to commands.cpython-312.pyc
+#27 0.328 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/__init__.py to __init__.cpython-312.pyc
+#27 0.328 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/intercept.py to intercept.cpython-312.pyc
+#27 0.329 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/thirdparty.py to thirdparty.cpython-312.pyc
+#27 0.329 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/filter.py to filter.cpython-312.pyc
+#27 0.330 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/decorators.py to decorators.cpython-312.pyc
+#27 0.330 byte-compiling build/bdist.linux-aarch64/egg/opal_common/logging/formatter.py to formatter.cpython-312.pyc
+#27 0.330 byte-compiling build/bdist.linux-aarch64/egg/opal_common/paths.py to paths.cpython-312.pyc
+#27 0.331 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/__init__.py to __init__.cpython-312.pyc
+#27 0.331 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/data.py to data.cpython-312.pyc
+#27 0.332 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/policy_source.py to policy_source.cpython-312.pyc
+#27 0.332 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/policy.py to policy.cpython-312.pyc
+#27 0.333 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/security.py to security.cpython-312.pyc
+#27 0.333 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/scopes.py to scopes.cpython-312.pyc
+#27 0.333 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/store.py to store.cpython-312.pyc
+#27 0.334 byte-compiling build/bdist.linux-aarch64/egg/opal_common/schemas/webhook.py to webhook.cpython-312.pyc
+#27 0.334 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/logger.py to logger.cpython-312.pyc
+#27 0.335 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/__init__.py to __init__.cpython-312.pyc
+#27 0.335 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/providers/http_fetch_provider.py to http_fetch_provider.cpython-312.pyc
+#27 0.336 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/providers/__init__.py to __init__.cpython-312.pyc
+#27 0.336 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/providers/fastapi_rpc_fetch_provider.py to fastapi_rpc_fetch_provider.cpython-312.pyc
+#27 0.336 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/events.py to events.cpython-312.pyc
+#27 0.337 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/fetch_provider.py to fetch_provider.cpython-312.pyc
+#27 0.337 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/__init__.py to __init__.cpython-312.pyc
+#27 0.337 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/fetch_worker.py to fetch_worker.cpython-312.pyc
+#27 0.338 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/base_fetching_engine.py to base_fetching_engine.cpython-312.pyc
+#27 0.338 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/core_callbacks.py to core_callbacks.cpython-312.pyc
+#27 0.339 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/engine/fetching_engine.py to fetching_engine.cpython-312.pyc
+#27 0.340 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/fetcher_register.py to fetcher_register.cpython-312.pyc
+#27 0.340 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/rpc_fetch_test.py to rpc_fetch_test.cpython-312.pyc
+#27 0.341 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/__init__.py to __init__.cpython-312.pyc
+#27 0.341 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/http_fetch_test.py to http_fetch_test.cpython-312.pyc
+#27 0.342 byte-compiling build/bdist.linux-aarch64/egg/opal_common/fetcher/tests/failure_handler_test.py to failure_handler_test.cpython-312.pyc
+#27 0.343 byte-compiling build/bdist.linux-aarch64/egg/opal_common/__init__.py to __init__.cpython-312.pyc
+#27 0.343 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/__init__.py to __init__.cpython-312.pyc
+#27 0.343 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/bundle_utils.py to bundle_utils.cpython-312.pyc
+#27 0.344 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/branch_tracker.py to branch_tracker.cpython-312.pyc
+#27 0.345 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/commit_viewer.py to commit_viewer.cpython-312.pyc
+#27 0.346 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/exceptions.py to exceptions.cpython-312.pyc
+#27 0.346 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/repo_cloner.py to repo_cloner.cpython-312.pyc
+#27 0.347 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/diff_viewer.py to diff_viewer.cpython-312.pyc
+#27 0.349 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/tar_file_to_local_git_extractor.py to tar_file_to_local_git_extractor.cpython-312.pyc
+#27 0.350 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/bundle_maker.py to bundle_maker.cpython-312.pyc
+#27 0.353 byte-compiling build/bdist.linux-aarch64/egg/opal_common/git/env.py to env.cpython-312.pyc
+#27 0.353 byte-compiling build/bdist.linux-aarch64/egg/opal_common/corn_utils.py to corn_utils.cpython-312.pyc
+#27 0.354 byte-compiling build/bdist.linux-aarch64/egg/opal_common/config.py to config.cpython-312.pyc
+#27 0.355 byte-compiling build/bdist.linux-aarch64/egg/opal_common/async_utils.py to async_utils.cpython-312.pyc
+#27 0.355 byte-compiling build/bdist.linux-aarch64/egg/opal_common/middleware.py to middleware.cpython-312.pyc
+#27 0.355 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/__init__.py to __init__.cpython-312.pyc
+#27 0.355 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/verifier.py to verifier.cpython-312.pyc
+#27 0.356 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/types.py to types.cpython-312.pyc
+#27 0.356 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/casting.py to casting.cpython-312.pyc
+#27 0.357 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/authz.py to authz.cpython-312.pyc
+#27 0.358 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/signer.py to signer.cpython-312.pyc
+#27 0.358 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/tests/jwt_signer_test.py to jwt_signer_test.cpython-312.pyc
+#27 0.360 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/tests/__init__.py to __init__.cpython-312.pyc
+#27 0.360 byte-compiling build/bdist.linux-aarch64/egg/opal_common/authentication/deps.py to deps.cpython-312.pyc
+#27 0.361 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/listener.py to listener.cpython-312.pyc
+#27 0.361 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/__init__.py to __init__.cpython-312.pyc
+#27 0.362 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/publisher.py to publisher.cpython-312.pyc
+#27 0.363 byte-compiling build/bdist.linux-aarch64/egg/opal_common/topics/utils.py to utils.cpython-312.pyc
+#27 0.363 byte-compiling build/bdist.linux-aarch64/egg/opal_common/urls.py to urls.cpython-312.pyc
+#27 0.364 byte-compiling build/bdist.linux-aarch64/egg/opal_common/http.py to http.cpython-312.pyc
+#27 0.364 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/__init__.py to __init__.cpython-312.pyc
+#27 0.364 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/api_policy_source.py to api_policy_source.cpython-312.pyc
+#27 0.366 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/git_policy_source.py to git_policy_source.cpython-312.pyc
+#27 0.366 byte-compiling build/bdist.linux-aarch64/egg/opal_common/sources/base_policy_source.py to base_policy_source.cpython-312.pyc
+#27 0.367 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/__init__.py to __init__.cpython-312.pyc
+#27 0.367 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/cli.py to cli.cpython-312.pyc
+#27 0.368 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/types.py to types.cpython-312.pyc
+#27 0.369 byte-compiling build/bdist.linux-aarch64/egg/opal_common/confi/confi.py to confi.cpython-312.pyc
+#27 0.371 byte-compiling build/bdist.linux-aarch64/egg/opal_common/utils.py to utils.cpython-312.pyc
+#27 0.373 byte-compiling build/bdist.linux-aarch64/egg/opal_common/engine/paths.py to paths.cpython-312.pyc
+#27 0.373 byte-compiling build/bdist.linux-aarch64/egg/opal_common/engine/parsing.py to parsing.cpython-312.pyc
+#27 0.373 byte-compiling build/bdist.linux-aarch64/egg/opal_common/engine/__init__.py to __init__.cpython-312.pyc
+#27 0.373 byte-compiling build/bdist.linux-aarch64/egg/opal_common/tests/__init__.py to __init__.cpython-312.pyc
+#27 0.373 byte-compiling build/bdist.linux-aarch64/egg/opal_common/tests/url_utils_test.py to url_utils_test.cpython-312.pyc
+#27 0.374 byte-compiling build/bdist.linux-aarch64/egg/opal_common/tests/path_utils_test.py to path_utils_test.cpython-312.pyc
+#27 0.375 byte-compiling build/bdist.linux-aarch64/egg/opal_common/security/__init__.py to __init__.cpython-312.pyc
+#27 0.375 byte-compiling build/bdist.linux-aarch64/egg/opal_common/security/tarsafe.py to tarsafe.cpython-312.pyc
+#27 0.376 byte-compiling build/bdist.linux-aarch64/egg/opal_common/security/sslcontext.py to sslcontext.cpython-312.pyc
+#27 0.376 byte-compiling build/bdist.linux-aarch64/egg/opal_common/emport.py to emport.cpython-312.pyc
+#27 0.378 creating build/bdist.linux-aarch64/egg/EGG-INFO
+#27 0.378 copying opal_common.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
+#27 0.378 copying opal_common.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#27 0.379 copying opal_common.egg-info/dependency_links.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#27 0.379 copying opal_common.egg-info/requires.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#27 0.379 copying opal_common.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#27 0.379 zip_safe flag not set; analyzing archive contents...
+#27 0.381 opal_common.authentication.tests.__pycache__.jwt_signer_test.cpython-312: module references __file__
+#27 0.383 opal_common.fetcher.providers.__pycache__.__init__.cpython-312: module references __file__
+#27 0.384 opal_common.fetcher.tests.__pycache__.failure_handler_test.cpython-312: module references __file__
+#27 0.384 opal_common.fetcher.tests.__pycache__.http_fetch_test.cpython-312: module references __file__
+#27 0.384 opal_common.fetcher.tests.__pycache__.rpc_fetch_test.cpython-312: module references __file__
+#27 0.386 opal_common.logging.__pycache__.intercept.cpython-312: module references __file__
+#27 0.388 opal_common.tests.__pycache__.path_utils_test.cpython-312: module references __file__
+#27 0.388 opal_common.tests.__pycache__.url_utils_test.cpython-312: module references __file__
+#27 0.389 creating 'dist/opal_common-0.7.4-py3.12.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+#27 0.429 removing 'build/bdist.linux-aarch64/egg' (and everything under it)
+#27 0.434 Processing opal_common-0.7.4-py3.12.egg
+#27 0.436 creating /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg
+#27 0.436 Extracting opal_common-0.7.4-py3.12.egg to /usr/local/lib/python3.12/site-packages
+#27 0.510 Adding opal-common 0.7.4 to easy-install.pth file
+#27 0.511 
+#27 0.511 Installed /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg
+#27 0.511 Processing dependencies for opal-common==0.7.4
+#27 0.567 Searching for setuptools==69.0.2
+#27 0.567 Best match: setuptools 69.0.2
+#27 0.567 Adding setuptools 69.0.2 to easy-install.pth file
+#27 0.567 detected new path './opal_common-0.7.4-py3.12.egg'
+#27 0.568 
+#27 0.568 Using /usr/local/lib/python3.12/site-packages
+#27 0.569 Searching for fastapi-utils==0.2.1
+#27 0.569 Best match: fastapi-utils 0.2.1
+#27 0.569 Adding fastapi-utils 0.2.1 to easy-install.pth file
+#27 0.569 
+#27 0.569 Using /usr/local/lib/python3.12/site-packages
+#27 0.570 Searching for uvicorn==0.25.0
+#27 0.570 Best match: uvicorn 0.25.0
+#27 0.570 Adding uvicorn 0.25.0 to easy-install.pth file
+#27 0.570 Installing uvicorn script to /usr/local/bin
+#27 0.571 
+#27 0.571 Using /usr/local/lib/python3.12/site-packages
+#27 0.571 Searching for pydantic==1.10.13
+#27 0.571 Best match: pydantic 1.10.13
+#27 0.571 Adding pydantic 1.10.13 to easy-install.pth file
+#27 0.572 
+#27 0.572 Using /usr/local/lib/python3.12/site-packages
+#27 0.572 Searching for gunicorn==20.1.0
+#27 0.572 Best match: gunicorn 20.1.0
+#27 0.572 Adding gunicorn 20.1.0 to easy-install.pth file
+#27 0.573 Installing gunicorn script to /usr/local/bin
+#27 0.573 
+#27 0.573 Using /usr/local/lib/python3.12/site-packages
+#27 0.573 Searching for fastapi-websocket-rpc==0.1.25
+#27 0.573 Best match: fastapi-websocket-rpc 0.1.25
+#27 0.573 Adding fastapi-websocket-rpc 0.1.25 to easy-install.pth file
+#27 0.574 
+#27 0.574 Using /usr/local/lib/python3.12/site-packages
+#27 0.574 Searching for fastapi-websocket-pubsub==0.3.4
+#27 0.574 Best match: fastapi-websocket-pubsub 0.3.4
+#27 0.574 Adding fastapi-websocket-pubsub 0.3.4 to easy-install.pth file
+#27 0.575 
+#27 0.575 Using /usr/local/lib/python3.12/site-packages
+#27 0.575 Searching for fastapi==0.108.0
+#27 0.575 Best match: fastapi 0.108.0
+#27 0.575 Adding fastapi 0.108.0 to easy-install.pth file
+#27 0.576 
+#27 0.576 Using /usr/local/lib/python3.12/site-packages
+#27 0.576 Searching for typer==0.9.0
+#27 0.576 Best match: typer 0.9.0
+#27 0.576 Adding typer 0.9.0 to easy-install.pth file
+#27 0.577 
+#27 0.577 Using /usr/local/lib/python3.12/site-packages
+#27 0.577 Searching for idna==3.6
+#27 0.577 Best match: idna 3.6
+#27 0.577 Adding idna 3.6 to easy-install.pth file
+#27 0.577 
+#27 0.577 Using /usr/local/lib/python3.12/site-packages
+#27 0.578 Searching for charset-normalizer==2.1.1
+#27 0.578 Best match: charset-normalizer 2.1.1
+#27 0.578 Adding charset-normalizer 2.1.1 to easy-install.pth file
+#27 0.578 Installing normalizer script to /usr/local/bin
+#27 0.578 
+#27 0.578 Using /usr/local/lib/python3.12/site-packages
+#27 0.579 Searching for tenacity==8.2.3
+#27 0.579 Best match: tenacity 8.2.3
+#27 0.579 Adding tenacity 8.2.3 to easy-install.pth file
+#27 0.579 
+#27 0.579 Using /usr/local/lib/python3.12/site-packages
+#27 0.580 Searching for python-decouple==3.8
+#27 0.580 Best match: python-decouple 3.8
+#27 0.580 Adding python-decouple 3.8 to easy-install.pth file
+#27 0.580 
+#27 0.580 Using /usr/local/lib/python3.12/site-packages
+#27 0.580 Searching for PyJWT==2.8.0
+#27 0.580 Best match: PyJWT 2.8.0
+#27 0.580 Adding PyJWT 2.8.0 to easy-install.pth file
+#27 0.581 
+#27 0.581 Using /usr/local/lib/python3.12/site-packages
+#27 0.581 Searching for loguru==0.7.2
+#27 0.581 Best match: loguru 0.7.2
+#27 0.581 Adding loguru 0.7.2 to easy-install.pth file
+#27 0.581 
+#27 0.581 Using /usr/local/lib/python3.12/site-packages
+#27 0.582 Searching for GitPython==3.1.40
+#27 0.582 Best match: GitPython 3.1.40
+#27 0.582 Adding GitPython 3.1.40 to easy-install.pth file
+#27 0.582 
+#27 0.582 Using /usr/local/lib/python3.12/site-packages
+#27 0.582 Searching for cryptography==41.0.7
+#27 0.582 Best match: cryptography 41.0.7
+#27 0.583 Adding cryptography 41.0.7 to easy-install.pth file
+#27 0.583 
+#27 0.583 Using /usr/local/lib/python3.12/site-packages
+#27 0.583 Searching for click==8.1.7
+#27 0.583 Best match: click 8.1.7
+#27 0.584 Adding click 8.1.7 to easy-install.pth file
+#27 0.584 
+#27 0.584 Using /usr/local/lib/python3.12/site-packages
+#27 0.584 Searching for aiohttp==3.9.1
+#27 0.585 Best match: aiohttp 3.9.1
+#27 0.585 Adding aiohttp 3.9.1 to easy-install.pth file
+#27 0.585 
+#27 0.585 Using /usr/local/lib/python3.12/site-packages
+#27 0.585 Searching for SQLAlchemy==1.4.51
+#27 0.585 Best match: SQLAlchemy 1.4.51
+#27 0.585 Adding SQLAlchemy 1.4.51 to easy-install.pth file
+#27 0.586 
+#27 0.586 Using /usr/local/lib/python3.12/site-packages
+#27 0.586 Searching for websockets==10.4
+#27 0.586 Best match: websockets 10.4
+#27 0.586 Adding websockets 10.4 to easy-install.pth file
+#27 0.586 
+#27 0.586 Using /usr/local/lib/python3.12/site-packages
+#27 0.587 Searching for watchfiles==0.21.0
+#27 0.587 Best match: watchfiles 0.21.0
+#27 0.587 Adding watchfiles 0.21.0 to easy-install.pth file
+#27 0.588 Installing watchfiles script to /usr/local/bin
+#27 0.588 
+#27 0.588 Using /usr/local/lib/python3.12/site-packages
+#27 0.588 Searching for uvloop==0.19.0
+#27 0.589 Best match: uvloop 0.19.0
+#27 0.589 Adding uvloop 0.19.0 to easy-install.pth file
+#27 0.590 
+#27 0.590 Using /usr/local/lib/python3.12/site-packages
+#27 0.590 Searching for PyYAML==6.0.1
+#27 0.590 Best match: PyYAML 6.0.1
+#27 0.590 Adding PyYAML 6.0.1 to easy-install.pth file
+#27 0.590 
+#27 0.590 Using /usr/local/lib/python3.12/site-packages
+#27 0.590 Searching for python-dotenv==1.0.0
+#27 0.590 Best match: python-dotenv 1.0.0
+#27 0.590 Adding python-dotenv 1.0.0 to easy-install.pth file
+#27 0.591 Installing dotenv script to /usr/local/bin
+#27 0.591 
+#27 0.591 Using /usr/local/lib/python3.12/site-packages
+#27 0.591 Searching for httptools==0.6.1
+#27 0.591 Best match: httptools 0.6.1
+#27 0.591 Adding httptools 0.6.1 to easy-install.pth file
+#27 0.592 
+#27 0.592 Using /usr/local/lib/python3.12/site-packages
+#27 0.592 Searching for h11==0.14.0
+#27 0.592 Best match: h11 0.14.0
+#27 0.592 Adding h11 0.14.0 to easy-install.pth file
+#27 0.593 
+#27 0.593 Using /usr/local/lib/python3.12/site-packages
+#27 0.593 Searching for email-validator==2.1.0.post1
+#27 0.593 Best match: email-validator 2.1.0.post1
+#27 0.593 Adding email-validator 2.1.0.post1 to easy-install.pth file
+#27 0.593 Installing email_validator script to /usr/local/bin
+#27 0.594 
+#27 0.594 Using /usr/local/lib/python3.12/site-packages
+#27 0.594 Searching for typing-extensions==4.9.0
+#27 0.594 Best match: typing-extensions 4.9.0
+#27 0.594 Adding typing-extensions 4.9.0 to easy-install.pth file
+#27 0.594 
+#27 0.594 Using /usr/local/lib/python3.12/site-packages
+#27 0.595 Searching for packaging==23.2
+#27 0.595 Best match: packaging 23.2
+#27 0.595 Adding packaging 23.2 to easy-install.pth file
+#27 0.595 
+#27 0.595 Using /usr/local/lib/python3.12/site-packages
+#27 0.596 Searching for permit-broadcaster==0.2.3
+#27 0.596 Best match: permit-broadcaster 0.2.3
+#27 0.596 Adding permit-broadcaster 0.2.3 to easy-install.pth file
+#27 0.596 
+#27 0.596 Using /usr/local/lib/python3.12/site-packages
+#27 0.596 Searching for starlette==0.32.0.post1
+#27 0.596 Best match: starlette 0.32.0.post1
+#27 0.596 Adding starlette 0.32.0.post1 to easy-install.pth file
+#27 0.597 
+#27 0.597 Using /usr/local/lib/python3.12/site-packages
+#27 0.597 Searching for gitdb==4.0.11
+#27 0.597 Best match: gitdb 4.0.11
+#27 0.597 Adding gitdb 4.0.11 to easy-install.pth file
+#27 0.597 
+#27 0.597 Using /usr/local/lib/python3.12/site-packages
+#27 0.598 Searching for cffi==1.16.0
+#27 0.598 Best match: cffi 1.16.0
+#27 0.598 Adding cffi 1.16.0 to easy-install.pth file
+#27 0.598 
+#27 0.598 Using /usr/local/lib/python3.12/site-packages
+#27 0.599 Searching for aiosignal==1.3.1
+#27 0.599 Best match: aiosignal 1.3.1
+#27 0.599 Adding aiosignal 1.3.1 to easy-install.pth file
+#27 0.599 
+#27 0.599 Using /usr/local/lib/python3.12/site-packages
+#27 0.599 Searching for frozenlist==1.4.1
+#27 0.599 Best match: frozenlist 1.4.1
+#27 0.599 Adding frozenlist 1.4.1 to easy-install.pth file
+#27 0.600 
+#27 0.600 Using /usr/local/lib/python3.12/site-packages
+#27 0.600 Searching for yarl==1.9.4
+#27 0.600 Best match: yarl 1.9.4
+#27 0.600 Adding yarl 1.9.4 to easy-install.pth file
+#27 0.601 
+#27 0.601 Using /usr/local/lib/python3.12/site-packages
+#27 0.601 Searching for multidict==6.0.4
+#27 0.601 Best match: multidict 6.0.4
+#27 0.601 Adding multidict 6.0.4 to easy-install.pth file
+#27 0.601 
+#27 0.601 Using /usr/local/lib/python3.12/site-packages
+#27 0.601 Searching for attrs==23.2.0
+#27 0.602 Best match: attrs 23.2.0
+#27 0.602 Adding attrs 23.2.0 to easy-install.pth file
+#27 0.602 
+#27 0.602 Using /usr/local/lib/python3.12/site-packages
+#27 0.602 Searching for greenlet==3.0.3
+#27 0.602 Best match: greenlet 3.0.3
+#27 0.602 Adding greenlet 3.0.3 to easy-install.pth file
+#27 0.603 
+#27 0.603 Using /usr/local/lib/python3.12/site-packages
+#27 0.603 Searching for anyio==4.2.0
+#27 0.603 Best match: anyio 4.2.0
+#27 0.603 Adding anyio 4.2.0 to easy-install.pth file
+#27 0.604 
+#27 0.604 Using /usr/local/lib/python3.12/site-packages
+#27 0.604 Searching for dnspython==2.4.2
+#27 0.604 Best match: dnspython 2.4.2
+#27 0.604 Adding dnspython 2.4.2 to easy-install.pth file
+#27 0.605 
+#27 0.605 Using /usr/local/lib/python3.12/site-packages
+#27 0.605 Searching for asyncpg==0.29.0
+#27 0.605 Best match: asyncpg 0.29.0
+#27 0.605 Adding asyncpg 0.29.0 to easy-install.pth file
+#27 0.606 
+#27 0.606 Using /usr/local/lib/python3.12/site-packages
+#27 0.606 Searching for aiokafka==0.10.0
+#27 0.606 Best match: aiokafka 0.10.0
+#27 0.606 Adding aiokafka 0.10.0 to easy-install.pth file
+#27 0.607 
+#27 0.607 Using /usr/local/lib/python3.12/site-packages
+#27 0.607 Searching for asyncio-redis==0.16.0
+#27 0.607 Best match: asyncio-redis 0.16.0
+#27 0.607 Adding asyncio-redis 0.16.0 to easy-install.pth file
+#27 0.607 
+#27 0.607 Using /usr/local/lib/python3.12/site-packages
+#27 0.607 Searching for smmap==5.0.1
+#27 0.607 Best match: smmap 5.0.1
+#27 0.608 Adding smmap 5.0.1 to easy-install.pth file
+#27 0.608 
+#27 0.608 Using /usr/local/lib/python3.12/site-packages
+#27 0.608 Searching for pycparser==2.21
+#27 0.608 Best match: pycparser 2.21
+#27 0.608 Adding pycparser 2.21 to easy-install.pth file
+#27 0.609 
+#27 0.609 Using /usr/local/lib/python3.12/site-packages
+#27 0.609 Searching for sniffio==1.3.0
+#27 0.609 Best match: sniffio 1.3.0
+#27 0.609 Adding sniffio 1.3.0 to easy-install.pth file
+#27 0.610 
+#27 0.610 Using /usr/local/lib/python3.12/site-packages
+#27 0.610 Searching for async-timeout==4.0.3
+#27 0.610 Best match: async-timeout 4.0.3
+#27 0.610 Adding async-timeout 4.0.3 to easy-install.pth file
+#27 0.611 
+#27 0.611 Using /usr/local/lib/python3.12/site-packages
+#27 0.611 Finished processing dependencies for opal-common==0.7.4
+#27 DONE 0.7s
+
+#28 [server 1/3] RUN apk update && apk add openssh-client git curl
+#28 0.264 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/main/aarch64/APKINDEX.tar.gz
+#28 0.529 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/community/aarch64/APKINDEX.tar.gz
+#28 0.933 v3.19.0-212-g604dbaec6bf [https://dl-cdn.alpinelinux.org/alpine/v3.19/main]
+#28 0.933 v3.19.0-213-g4d0efbbddfb [https://dl-cdn.alpinelinux.org/alpine/v3.19/community]
+#28 0.933 OK: 22846 distinct packages available
+#28 1.247 (1/5) Installing curl (8.5.0-r0)
+#28 1.352 (2/5) Installing git (2.43.0-r0)
+#28 1.589 (3/5) Installing openssh-keygen (9.6_p1-r0)
+#28 1.614 (4/5) Installing openssh-client-common (9.6_p1-r0)
+#28 1.675 (5/5) Installing openssh-client-default (9.6_p1-r0)
+#28 1.715 Executing busybox-1.36.1-r15.trigger
+#28 1.721 OK: 56 MiB in 83 packages
+#28 DONE 1.8s
+
+#29 [server 2/3] RUN if [ "true" = "true" ] ; then   mkdir -p ~/.ssh &&   chmod 0700 ~/.ssh &&   ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts ; fi
+#29 0.318 # github.com:22 SSH-2.0-babeld-8e18a363
+#29 DONE 0.5s
+
+#30 [server 3/3] RUN cd ./packages/opal-server && python setup.py install
+#30 0.434 running install
+#30 0.434 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+#30 0.434 !!
+#30 0.434 
+#30 0.434         ********************************************************************************
+#30 0.434         Please avoid running ``setup.py`` directly.
+#30 0.434         Instead, use pypa/build, pypa/installer or other
+#30 0.434         standards-based tools.
+#30 0.434 
+#30 0.434         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+#30 0.434         ********************************************************************************
+#30 0.434 
+#30 0.434 !!
+#30 0.434   self.initialize_options()
+#30 0.492 /usr/local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+#30 0.492 !!
+#30 0.492 
+#30 0.492         ********************************************************************************
+#30 0.492         Please avoid running ``setup.py`` and ``easy_install``.
+#30 0.492         Instead, use pypa/build, pypa/installer or other
+#30 0.492         standards-based tools.
+#30 0.492 
+#30 0.492         See https://github.com/pypa/setuptools/issues/917 for details.
+#30 0.492         ********************************************************************************
+#30 0.492 
+#30 0.492 !!
+#30 0.492   self.initialize_options()
+#30 0.516 running bdist_egg
+#30 0.525 running egg_info
+#30 0.527 writing opal_server.egg-info/PKG-INFO
+#30 0.528 writing dependency_links to opal_server.egg-info/dependency_links.txt
+#30 0.528 writing entry points to opal_server.egg-info/entry_points.txt
+#30 0.529 writing requirements to opal_server.egg-info/requires.txt
+#30 0.529 writing top-level names to opal_server.egg-info/top_level.txt
+#30 0.537 reading manifest file 'opal_server.egg-info/SOURCES.txt'
+#30 0.538 writing manifest file 'opal_server.egg-info/SOURCES.txt'
+#30 0.538 installing library code to build/bdist.linux-aarch64/egg
+#30 0.538 running install_lib
+#30 0.538 running build_py
+#30 0.538 copying opal_server/pubsub.py -> build/lib/opal_server
+#30 0.539 copying opal_server/__init__.py -> build/lib/opal_server
+#30 0.539 copying opal_server/loadlimiting.py -> build/lib/opal_server
+#30 0.539 copying opal_server/cli.py -> build/lib/opal_server
+#30 0.539 copying opal_server/redis.py -> build/lib/opal_server
+#30 0.540 copying opal_server/config.py -> build/lib/opal_server
+#30 0.540 copying opal_server/git_fetcher.py -> build/lib/opal_server
+#30 0.540 copying opal_server/main.py -> build/lib/opal_server
+#30 0.540 copying opal_server/statistics.py -> build/lib/opal_server
+#30 0.540 copying opal_server/publisher.py -> build/lib/opal_server
+#30 0.540 copying opal_server/server.py -> build/lib/opal_server
+#30 0.541 copying opal_server/data/__init__.py -> build/lib/opal_server/data
+#30 0.541 copying opal_server/data/api.py -> build/lib/opal_server/data
+#30 0.541 copying opal_server/data/data_update_publisher.py -> build/lib/opal_server/data
+#30 0.541 copying opal_server/scopes/service.py -> build/lib/opal_server/scopes
+#30 0.542 copying opal_server/scopes/scope_repository.py -> build/lib/opal_server/scopes
+#30 0.542 copying opal_server/scopes/__init__.py -> build/lib/opal_server/scopes
+#30 0.542 copying opal_server/scopes/api.py -> build/lib/opal_server/scopes
+#30 0.542 copying opal_server/scopes/task.py -> build/lib/opal_server/scopes
+#30 0.542 copying opal_server/scopes/loader.py -> build/lib/opal_server/scopes
+#30 0.542 copying opal_server/policy/__init__.py -> build/lib/opal_server/policy
+#30 0.542 copying opal_server/security/jwks.py -> build/lib/opal_server/security
+#30 0.543 copying opal_server/security/__init__.py -> build/lib/opal_server/security
+#30 0.543 copying opal_server/security/api.py -> build/lib/opal_server/security
+#30 0.543 copying opal_server/policy/bundles/__init__.py -> build/lib/opal_server/policy/bundles
+#30 0.543 copying opal_server/policy/bundles/api.py -> build/lib/opal_server/policy/bundles
+#30 0.543 copying opal_server/policy/watcher/__init__.py -> build/lib/opal_server/policy/watcher
+#30 0.543 copying opal_server/policy/watcher/task.py -> build/lib/opal_server/policy/watcher
+#30 0.543 copying opal_server/policy/watcher/factory.py -> build/lib/opal_server/policy/watcher
+#30 0.544 copying opal_server/policy/watcher/callbacks.py -> build/lib/opal_server/policy/watcher
+#30 0.544 copying opal_server/policy/webhook/listener.py -> build/lib/opal_server/policy/webhook
+#30 0.544 copying opal_server/policy/webhook/__init__.py -> build/lib/opal_server/policy/webhook
+#30 0.544 copying opal_server/policy/webhook/api.py -> build/lib/opal_server/policy/webhook
+#30 0.544 copying opal_server/policy/webhook/deps.py -> build/lib/opal_server/policy/webhook
+#30 0.545 creating build/bdist.linux-aarch64
+#30 0.545 creating build/bdist.linux-aarch64/egg
+#30 0.545 creating build/bdist.linux-aarch64/egg/opal_server
+#30 0.545 copying build/lib/opal_server/pubsub.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.546 copying build/lib/opal_server/__init__.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.546 copying build/lib/opal_server/loadlimiting.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.546 copying build/lib/opal_server/cli.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.546 creating build/bdist.linux-aarch64/egg/opal_server/data
+#30 0.546 copying build/lib/opal_server/data/__init__.py -> build/bdist.linux-aarch64/egg/opal_server/data
+#30 0.546 copying build/lib/opal_server/data/api.py -> build/bdist.linux-aarch64/egg/opal_server/data
+#30 0.546 copying build/lib/opal_server/data/data_update_publisher.py -> build/bdist.linux-aarch64/egg/opal_server/data
+#30 0.546 copying build/lib/opal_server/redis.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.546 creating build/bdist.linux-aarch64/egg/opal_server/scopes
+#30 0.546 copying build/lib/opal_server/scopes/service.py -> build/bdist.linux-aarch64/egg/opal_server/scopes
+#30 0.547 copying build/lib/opal_server/scopes/scope_repository.py -> build/bdist.linux-aarch64/egg/opal_server/scopes
+#30 0.547 copying build/lib/opal_server/scopes/__init__.py -> build/bdist.linux-aarch64/egg/opal_server/scopes
+#30 0.547 copying build/lib/opal_server/scopes/api.py -> build/bdist.linux-aarch64/egg/opal_server/scopes
+#30 0.547 copying build/lib/opal_server/scopes/task.py -> build/bdist.linux-aarch64/egg/opal_server/scopes
+#30 0.547 copying build/lib/opal_server/scopes/loader.py -> build/bdist.linux-aarch64/egg/opal_server/scopes
+#30 0.547 copying build/lib/opal_server/config.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.547 copying build/lib/opal_server/git_fetcher.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.547 copying build/lib/opal_server/main.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.547 copying build/lib/opal_server/statistics.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.548 copying build/lib/opal_server/publisher.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.548 creating build/bdist.linux-aarch64/egg/opal_server/policy
+#30 0.548 creating build/bdist.linux-aarch64/egg/opal_server/policy/bundles
+#30 0.548 copying build/lib/opal_server/policy/bundles/__init__.py -> build/bdist.linux-aarch64/egg/opal_server/policy/bundles
+#30 0.548 copying build/lib/opal_server/policy/bundles/api.py -> build/bdist.linux-aarch64/egg/opal_server/policy/bundles
+#30 0.548 creating build/bdist.linux-aarch64/egg/opal_server/policy/watcher
+#30 0.548 copying build/lib/opal_server/policy/watcher/__init__.py -> build/bdist.linux-aarch64/egg/opal_server/policy/watcher
+#30 0.548 copying build/lib/opal_server/policy/watcher/task.py -> build/bdist.linux-aarch64/egg/opal_server/policy/watcher
+#30 0.549 copying build/lib/opal_server/policy/watcher/factory.py -> build/bdist.linux-aarch64/egg/opal_server/policy/watcher
+#30 0.549 copying build/lib/opal_server/policy/watcher/callbacks.py -> build/bdist.linux-aarch64/egg/opal_server/policy/watcher
+#30 0.549 copying build/lib/opal_server/policy/__init__.py -> build/bdist.linux-aarch64/egg/opal_server/policy
+#30 0.549 creating build/bdist.linux-aarch64/egg/opal_server/policy/webhook
+#30 0.549 copying build/lib/opal_server/policy/webhook/listener.py -> build/bdist.linux-aarch64/egg/opal_server/policy/webhook
+#30 0.549 copying build/lib/opal_server/policy/webhook/__init__.py -> build/bdist.linux-aarch64/egg/opal_server/policy/webhook
+#30 0.549 copying build/lib/opal_server/policy/webhook/api.py -> build/bdist.linux-aarch64/egg/opal_server/policy/webhook
+#30 0.549 copying build/lib/opal_server/policy/webhook/deps.py -> build/bdist.linux-aarch64/egg/opal_server/policy/webhook
+#30 0.549 copying build/lib/opal_server/server.py -> build/bdist.linux-aarch64/egg/opal_server
+#30 0.549 creating build/bdist.linux-aarch64/egg/opal_server/security
+#30 0.549 copying build/lib/opal_server/security/jwks.py -> build/bdist.linux-aarch64/egg/opal_server/security
+#30 0.549 copying build/lib/opal_server/security/__init__.py -> build/bdist.linux-aarch64/egg/opal_server/security
+#30 0.550 copying build/lib/opal_server/security/api.py -> build/bdist.linux-aarch64/egg/opal_server/security
+#30 0.551 byte-compiling build/bdist.linux-aarch64/egg/opal_server/pubsub.py to pubsub.cpython-312.pyc
+#30 0.552 byte-compiling build/bdist.linux-aarch64/egg/opal_server/__init__.py to __init__.cpython-312.pyc
+#30 0.552 byte-compiling build/bdist.linux-aarch64/egg/opal_server/loadlimiting.py to loadlimiting.cpython-312.pyc
+#30 0.552 byte-compiling build/bdist.linux-aarch64/egg/opal_server/cli.py to cli.cpython-312.pyc
+#30 0.553 byte-compiling build/bdist.linux-aarch64/egg/opal_server/data/__init__.py to __init__.cpython-312.pyc
+#30 0.553 byte-compiling build/bdist.linux-aarch64/egg/opal_server/data/api.py to api.cpython-312.pyc
+#30 0.554 byte-compiling build/bdist.linux-aarch64/egg/opal_server/data/data_update_publisher.py to data_update_publisher.cpython-312.pyc
+#30 0.555 byte-compiling build/bdist.linux-aarch64/egg/opal_server/redis.py to redis.cpython-312.pyc
+#30 0.556 byte-compiling build/bdist.linux-aarch64/egg/opal_server/scopes/service.py to service.cpython-312.pyc
+#30 0.557 byte-compiling build/bdist.linux-aarch64/egg/opal_server/scopes/scope_repository.py to scope_repository.cpython-312.pyc
+#30 0.558 byte-compiling build/bdist.linux-aarch64/egg/opal_server/scopes/__init__.py to __init__.cpython-312.pyc
+#30 0.558 byte-compiling build/bdist.linux-aarch64/egg/opal_server/scopes/api.py to api.cpython-312.pyc
+#30 0.560 byte-compiling build/bdist.linux-aarch64/egg/opal_server/scopes/task.py to task.cpython-312.pyc
+#30 0.562 byte-compiling build/bdist.linux-aarch64/egg/opal_server/scopes/loader.py to loader.cpython-312.pyc
+#30 0.562 byte-compiling build/bdist.linux-aarch64/egg/opal_server/config.py to config.cpython-312.pyc
+#30 0.563 byte-compiling build/bdist.linux-aarch64/egg/opal_server/git_fetcher.py to git_fetcher.cpython-312.pyc
+#30 0.566 byte-compiling build/bdist.linux-aarch64/egg/opal_server/main.py to main.cpython-312.pyc
+#30 0.567 byte-compiling build/bdist.linux-aarch64/egg/opal_server/statistics.py to statistics.cpython-312.pyc
+#30 0.569 byte-compiling build/bdist.linux-aarch64/egg/opal_server/publisher.py to publisher.cpython-312.pyc
+#30 0.569 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/bundles/__init__.py to __init__.cpython-312.pyc
+#30 0.569 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/bundles/api.py to api.cpython-312.pyc
+#30 0.570 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/watcher/__init__.py to __init__.cpython-312.pyc
+#30 0.570 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/watcher/task.py to task.cpython-312.pyc
+#30 0.571 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/watcher/factory.py to factory.cpython-312.pyc
+#30 0.572 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/watcher/callbacks.py to callbacks.cpython-312.pyc
+#30 0.573 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/__init__.py to __init__.cpython-312.pyc
+#30 0.573 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/webhook/listener.py to listener.cpython-312.pyc
+#30 0.573 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/webhook/__init__.py to __init__.cpython-312.pyc
+#30 0.573 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/webhook/api.py to api.cpython-312.pyc
+#30 0.574 byte-compiling build/bdist.linux-aarch64/egg/opal_server/policy/webhook/deps.py to deps.cpython-312.pyc
+#30 0.575 byte-compiling build/bdist.linux-aarch64/egg/opal_server/server.py to server.cpython-312.pyc
+#30 0.577 byte-compiling build/bdist.linux-aarch64/egg/opal_server/security/jwks.py to jwks.cpython-312.pyc
+#30 0.578 byte-compiling build/bdist.linux-aarch64/egg/opal_server/security/__init__.py to __init__.cpython-312.pyc
+#30 0.578 byte-compiling build/bdist.linux-aarch64/egg/opal_server/security/api.py to api.cpython-312.pyc
+#30 0.579 creating build/bdist.linux-aarch64/egg/EGG-INFO
+#30 0.579 copying opal_server.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
+#30 0.579 copying opal_server.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#30 0.579 copying opal_server.egg-info/dependency_links.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#30 0.580 copying opal_server.egg-info/entry_points.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#30 0.580 copying opal_server.egg-info/requires.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#30 0.580 copying opal_server.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#30 0.580 zip_safe flag not set; analyzing archive contents...
+#30 0.580 opal_server.__pycache__.cli.cpython-312: module references __file__
+#30 0.586 creating 'dist/opal_server-0.7.4-py3.12.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+#30 0.604 removing 'build/bdist.linux-aarch64/egg' (and everything under it)
+#30 0.606 Processing opal_server-0.7.4-py3.12.egg
+#30 0.607 creating /usr/local/lib/python3.12/site-packages/opal_server-0.7.4-py3.12.egg
+#30 0.607 Extracting opal_server-0.7.4-py3.12.egg to /usr/local/lib/python3.12/site-packages
+#30 0.643 Adding opal-server 0.7.4 to easy-install.pth file
+#30 0.644 Installing opal-server script to /usr/local/bin
+#30 0.644 
+#30 0.644 Installed /usr/local/lib/python3.12/site-packages/opal_server-0.7.4-py3.12.egg
+#30 0.644 Processing dependencies for opal-server==0.7.4
+#30 0.715 Searching for setuptools==69.0.2
+#30 0.715 Best match: setuptools 69.0.2
+#30 0.715 Adding setuptools 69.0.2 to easy-install.pth file
+#30 0.715 detected new path './opal_server-0.7.4-py3.12.egg'
+#30 0.716 
+#30 0.716 Using /usr/local/lib/python3.12/site-packages
+#30 0.717 Searching for fastapi-utils==0.2.1
+#30 0.717 Best match: fastapi-utils 0.2.1
+#30 0.717 Adding fastapi-utils 0.2.1 to easy-install.pth file
+#30 0.717 
+#30 0.717 Using /usr/local/lib/python3.12/site-packages
+#30 0.718 Searching for uvicorn==0.25.0
+#30 0.718 Best match: uvicorn 0.25.0
+#30 0.718 Adding uvicorn 0.25.0 to easy-install.pth file
+#30 0.718 Installing uvicorn script to /usr/local/bin
+#30 0.718 
+#30 0.718 Using /usr/local/lib/python3.12/site-packages
+#30 0.718 Searching for pydantic==1.10.13
+#30 0.718 Best match: pydantic 1.10.13
+#30 0.718 Adding pydantic 1.10.13 to easy-install.pth file
+#30 0.719 
+#30 0.719 Using /usr/local/lib/python3.12/site-packages
+#30 0.719 Searching for gunicorn==20.1.0
+#30 0.719 Best match: gunicorn 20.1.0
+#30 0.720 Adding gunicorn 20.1.0 to easy-install.pth file
+#30 0.720 Installing gunicorn script to /usr/local/bin
+#30 0.720 
+#30 0.720 Using /usr/local/lib/python3.12/site-packages
+#30 0.720 Searching for fastapi-websocket-rpc==0.1.25
+#30 0.720 Best match: fastapi-websocket-rpc 0.1.25
+#30 0.720 Adding fastapi-websocket-rpc 0.1.25 to easy-install.pth file
+#30 0.721 
+#30 0.721 Using /usr/local/lib/python3.12/site-packages
+#30 0.721 Searching for fastapi-websocket-pubsub==0.3.4
+#30 0.721 Best match: fastapi-websocket-pubsub 0.3.4
+#30 0.722 Adding fastapi-websocket-pubsub 0.3.4 to easy-install.pth file
+#30 0.722 
+#30 0.722 Using /usr/local/lib/python3.12/site-packages
+#30 0.723 Searching for fastapi==0.108.0
+#30 0.723 Best match: fastapi 0.108.0
+#30 0.723 Adding fastapi 0.108.0 to easy-install.pth file
+#30 0.724 
+#30 0.724 Using /usr/local/lib/python3.12/site-packages
+#30 0.724 Searching for typer==0.9.0
+#30 0.724 Best match: typer 0.9.0
+#30 0.724 Adding typer 0.9.0 to easy-install.pth file
+#30 0.725 
+#30 0.725 Using /usr/local/lib/python3.12/site-packages
+#30 0.726 Searching for idna==3.6
+#30 0.726 Best match: idna 3.6
+#30 0.726 Adding idna 3.6 to easy-install.pth file
+#30 0.727 
+#30 0.727 Using /usr/local/lib/python3.12/site-packages
+#30 0.727 Searching for charset-normalizer==2.1.1
+#30 0.727 Best match: charset-normalizer 2.1.1
+#30 0.727 Adding charset-normalizer 2.1.1 to easy-install.pth file
+#30 0.728 Installing normalizer script to /usr/local/bin
+#30 0.728 
+#30 0.728 Using /usr/local/lib/python3.12/site-packages
+#30 0.729 Searching for opal-common==0.7.4
+#30 0.729 Best match: opal-common 0.7.4
+#30 0.729 Processing opal_common-0.7.4-py3.12.egg
+#30 0.729 Adding opal-common 0.7.4 to easy-install.pth file
+#30 0.729 
+#30 0.729 Using /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg
+#30 0.730 Searching for redis==4.6.0
+#30 0.730 Best match: redis 4.6.0
+#30 0.730 Adding redis 4.6.0 to easy-install.pth file
+#30 0.731 
+#30 0.731 Using /usr/local/lib/python3.12/site-packages
+#30 0.731 Searching for asgiref==3.7.2
+#30 0.731 Best match: asgiref 3.7.2
+#30 0.732 Adding asgiref 3.7.2 to easy-install.pth file
+#30 0.732 
+#30 0.732 Using /usr/local/lib/python3.12/site-packages
+#30 0.733 Searching for pygit2==1.13.3
+#30 0.733 Best match: pygit2 1.13.3
+#30 0.733 Adding pygit2 1.13.3 to easy-install.pth file
+#30 0.734 
+#30 0.734 Using /usr/local/lib/python3.12/site-packages
+#30 0.734 Searching for slowapi==0.1.8
+#30 0.734 Best match: slowapi 0.1.8
+#30 0.734 Adding slowapi 0.1.8 to easy-install.pth file
+#30 0.735 
+#30 0.735 Using /usr/local/lib/python3.12/site-packages
+#30 0.735 Searching for ddtrace==2.4.0
+#30 0.735 Best match: ddtrace 2.4.0
+#30 0.735 Adding ddtrace 2.4.0 to easy-install.pth file
+#30 0.736 Installing ddtrace-run script to /usr/local/bin
+#30 0.736 
+#30 0.736 Using /usr/local/lib/python3.12/site-packages
+#30 0.736 Searching for websockets==10.4
+#30 0.736 Best match: websockets 10.4
+#30 0.736 Adding websockets 10.4 to easy-install.pth file
+#30 0.737 
+#30 0.737 Using /usr/local/lib/python3.12/site-packages
+#30 0.737 Searching for PyJWT==2.8.0
+#30 0.737 Best match: PyJWT 2.8.0
+#30 0.737 Adding PyJWT 2.8.0 to easy-install.pth file
+#30 0.738 
+#30 0.738 Using /usr/local/lib/python3.12/site-packages
+#30 0.738 Searching for GitPython==3.1.40
+#30 0.739 Best match: GitPython 3.1.40
+#30 0.739 Adding GitPython 3.1.40 to easy-install.pth file
+#30 0.740 
+#30 0.740 Using /usr/local/lib/python3.12/site-packages
+#30 0.740 Searching for permit-broadcaster==0.2.3
+#30 0.740 Best match: permit-broadcaster 0.2.3
+#30 0.740 Adding permit-broadcaster 0.2.3 to easy-install.pth file
+#30 0.741 
+#30 0.741 Using /usr/local/lib/python3.12/site-packages
+#30 0.741 Searching for click==8.1.7
+#30 0.741 Best match: click 8.1.7
+#30 0.741 Adding click 8.1.7 to easy-install.pth file
+#30 0.742 
+#30 0.742 Using /usr/local/lib/python3.12/site-packages
+#30 0.742 Searching for SQLAlchemy==1.4.51
+#30 0.743 Best match: SQLAlchemy 1.4.51
+#30 0.743 Adding SQLAlchemy 1.4.51 to easy-install.pth file
+#30 0.743 
+#30 0.743 Using /usr/local/lib/python3.12/site-packages
+#30 0.743 Searching for watchfiles==0.21.0
+#30 0.743 Best match: watchfiles 0.21.0
+#30 0.743 Adding watchfiles 0.21.0 to easy-install.pth file
+#30 0.745 Installing watchfiles script to /usr/local/bin
+#30 0.745 
+#30 0.745 Using /usr/local/lib/python3.12/site-packages
+#30 0.745 Searching for uvloop==0.19.0
+#30 0.745 Best match: uvloop 0.19.0
+#30 0.745 Adding uvloop 0.19.0 to easy-install.pth file
+#30 0.746 
+#30 0.746 Using /usr/local/lib/python3.12/site-packages
+#30 0.747 Searching for PyYAML==6.0.1
+#30 0.747 Best match: PyYAML 6.0.1
+#30 0.747 Adding PyYAML 6.0.1 to easy-install.pth file
+#30 0.748 
+#30 0.748 Using /usr/local/lib/python3.12/site-packages
+#30 0.748 Searching for python-dotenv==1.0.0
+#30 0.748 Best match: python-dotenv 1.0.0
+#30 0.748 Adding python-dotenv 1.0.0 to easy-install.pth file
+#30 0.749 Installing dotenv script to /usr/local/bin
+#30 0.750 
+#30 0.750 Using /usr/local/lib/python3.12/site-packages
+#30 0.751 Searching for httptools==0.6.1
+#30 0.751 Best match: httptools 0.6.1
+#30 0.751 Adding httptools 0.6.1 to easy-install.pth file
+#30 0.752 
+#30 0.752 Using /usr/local/lib/python3.12/site-packages
+#30 0.753 Searching for h11==0.14.0
+#30 0.753 Best match: h11 0.14.0
+#30 0.753 Adding h11 0.14.0 to easy-install.pth file
+#30 0.754 
+#30 0.754 Using /usr/local/lib/python3.12/site-packages
+#30 0.754 Searching for email-validator==2.1.0.post1
+#30 0.754 Best match: email-validator 2.1.0.post1
+#30 0.754 Adding email-validator 2.1.0.post1 to easy-install.pth file
+#30 0.755 Installing email_validator script to /usr/local/bin
+#30 0.755 
+#30 0.755 Using /usr/local/lib/python3.12/site-packages
+#30 0.755 Searching for typing-extensions==4.9.0
+#30 0.755 Best match: typing-extensions 4.9.0
+#30 0.755 Adding typing-extensions 4.9.0 to easy-install.pth file
+#30 0.756 
+#30 0.756 Using /usr/local/lib/python3.12/site-packages
+#30 0.756 Searching for tenacity==8.2.3
+#30 0.756 Best match: tenacity 8.2.3
+#30 0.756 Adding tenacity 8.2.3 to easy-install.pth file
+#30 0.756 
+#30 0.756 Using /usr/local/lib/python3.12/site-packages
+#30 0.757 Searching for packaging==23.2
+#30 0.757 Best match: packaging 23.2
+#30 0.757 Adding packaging 23.2 to easy-install.pth file
+#30 0.757 
+#30 0.757 Using /usr/local/lib/python3.12/site-packages
+#30 0.758 Searching for starlette==0.32.0.post1
+#30 0.758 Best match: starlette 0.32.0.post1
+#30 0.758 Adding starlette 0.32.0.post1 to easy-install.pth file
+#30 0.758 
+#30 0.758 Using /usr/local/lib/python3.12/site-packages
+#30 0.758 Searching for python-decouple==3.8
+#30 0.759 Best match: python-decouple 3.8
+#30 0.759 Adding python-decouple 3.8 to easy-install.pth file
+#30 0.760 
+#30 0.760 Using /usr/local/lib/python3.12/site-packages
+#30 0.760 Searching for loguru==0.7.2
+#30 0.760 Best match: loguru 0.7.2
+#30 0.760 Adding loguru 0.7.2 to easy-install.pth file
+#30 0.761 
+#30 0.761 Using /usr/local/lib/python3.12/site-packages
+#30 0.761 Searching for cryptography==41.0.7
+#30 0.761 Best match: cryptography 41.0.7
+#30 0.761 Adding cryptography 41.0.7 to easy-install.pth file
+#30 0.761 
+#30 0.761 Using /usr/local/lib/python3.12/site-packages
+#30 0.762 Searching for aiohttp==3.9.1
+#30 0.762 Best match: aiohttp 3.9.1
+#30 0.762 Adding aiohttp 3.9.1 to easy-install.pth file
+#30 0.762 
+#30 0.762 Using /usr/local/lib/python3.12/site-packages
+#30 0.762 Searching for cffi==1.16.0
+#30 0.762 Best match: cffi 1.16.0
+#30 0.762 Adding cffi 1.16.0 to easy-install.pth file
+#30 0.763 
+#30 0.763 Using /usr/local/lib/python3.12/site-packages
+#30 0.763 Searching for limits==3.7.0
+#30 0.763 Best match: limits 3.7.0
+#30 0.763 Adding limits 3.7.0 to easy-install.pth file
+#30 0.764 
+#30 0.764 Using /usr/local/lib/python3.12/site-packages
+#30 0.764 Searching for bytecode==0.15.1
+#30 0.764 Best match: bytecode 0.15.1
+#30 0.764 Adding bytecode 0.15.1 to easy-install.pth file
+#30 0.765 
+#30 0.765 Using /usr/local/lib/python3.12/site-packages
+#30 0.765 Searching for xmltodict==0.13.0
+#30 0.765 Best match: xmltodict 0.13.0
+#30 0.765 Adding xmltodict 0.13.0 to easy-install.pth file
+#30 0.766 
+#30 0.766 Using /usr/local/lib/python3.12/site-packages
+#30 0.766 Searching for six==1.16.0
+#30 0.766 Best match: six 1.16.0
+#30 0.766 Adding six 1.16.0 to easy-install.pth file
+#30 0.767 
+#30 0.767 Using /usr/local/lib/python3.12/site-packages
+#30 0.767 Searching for protobuf==4.25.1
+#30 0.767 Best match: protobuf 4.25.1
+#30 0.767 Adding protobuf 4.25.1 to easy-install.pth file
+#30 0.768 
+#30 0.768 Using /usr/local/lib/python3.12/site-packages
+#30 0.768 Searching for opentelemetry-api==1.22.0
+#30 0.768 Best match: opentelemetry-api 1.22.0
+#30 0.768 Adding opentelemetry-api 1.22.0 to easy-install.pth file
+#30 0.769 
+#30 0.769 Using /usr/local/lib/python3.12/site-packages
+#30 0.770 Searching for envier==0.5.0
+#30 0.770 Best match: envier 0.5.0
+#30 0.770 Adding envier 0.5.0 to easy-install.pth file
+#30 0.772 
+#30 0.772 Using /usr/local/lib/python3.12/site-packages
+#30 0.773 Searching for ddsketch==2.0.4
+#30 0.773 Best match: ddsketch 2.0.4
+#30 0.773 Adding ddsketch 2.0.4 to easy-install.pth file
+#30 0.774 
+#30 0.774 Using /usr/local/lib/python3.12/site-packages
+#30 0.774 Searching for cattrs==23.2.3
+#30 0.774 Best match: cattrs 23.2.3
+#30 0.774 Adding cattrs 23.2.3 to easy-install.pth file
+#30 0.775 
+#30 0.775 Using /usr/local/lib/python3.12/site-packages
+#30 0.776 Searching for attrs==23.2.0
+#30 0.776 Best match: attrs 23.2.0
+#30 0.776 Adding attrs 23.2.0 to easy-install.pth file
+#30 0.777 
+#30 0.777 Using /usr/local/lib/python3.12/site-packages
+#30 0.778 Searching for gitdb==4.0.11
+#30 0.780 Best match: gitdb 4.0.11
+#30 0.780 Adding gitdb 4.0.11 to easy-install.pth file
+#30 0.780 
+#30 0.780 Using /usr/local/lib/python3.12/site-packages
+#30 0.780 Searching for aiokafka==0.10.0
+#30 0.780 Best match: aiokafka 0.10.0
+#30 0.780 Adding aiokafka 0.10.0 to easy-install.pth file
+#30 0.780 
+#30 0.780 Using /usr/local/lib/python3.12/site-packages
+#30 0.780 Searching for asyncpg==0.29.0
+#30 0.781 Best match: asyncpg 0.29.0
+#30 0.781 Adding asyncpg 0.29.0 to easy-install.pth file
+#30 0.782 
+#30 0.782 Using /usr/local/lib/python3.12/site-packages
+#30 0.783 Searching for asyncio-redis==0.16.0
+#30 0.783 Best match: asyncio-redis 0.16.0
+#30 0.783 Adding asyncio-redis 0.16.0 to easy-install.pth file
+#30 0.784 
+#30 0.784 Using /usr/local/lib/python3.12/site-packages
+#30 0.784 Searching for greenlet==3.0.3
+#30 0.785 Best match: greenlet 3.0.3
+#30 0.785 Adding greenlet 3.0.3 to easy-install.pth file
+#30 0.786 
+#30 0.786 Using /usr/local/lib/python3.12/site-packages
+#30 0.786 Searching for anyio==4.2.0
+#30 0.786 Best match: anyio 4.2.0
+#30 0.787 Adding anyio 4.2.0 to easy-install.pth file
+#30 0.788 
+#30 0.788 Using /usr/local/lib/python3.12/site-packages
+#30 0.788 Searching for dnspython==2.4.2
+#30 0.788 Best match: dnspython 2.4.2
+#30 0.788 Adding dnspython 2.4.2 to easy-install.pth file
+#30 0.789 
+#30 0.789 Using /usr/local/lib/python3.12/site-packages
+#30 0.789 Searching for aiosignal==1.3.1
+#30 0.789 Best match: aiosignal 1.3.1
+#30 0.789 Adding aiosignal 1.3.1 to easy-install.pth file
+#30 0.790 
+#30 0.790 Using /usr/local/lib/python3.12/site-packages
+#30 0.791 Searching for frozenlist==1.4.1
+#30 0.791 Best match: frozenlist 1.4.1
+#30 0.791 Adding frozenlist 1.4.1 to easy-install.pth file
+#30 0.792 
+#30 0.792 Using /usr/local/lib/python3.12/site-packages
+#30 0.793 Searching for yarl==1.9.4
+#30 0.793 Best match: yarl 1.9.4
+#30 0.793 Adding yarl 1.9.4 to easy-install.pth file
+#30 0.794 
+#30 0.794 Using /usr/local/lib/python3.12/site-packages
+#30 0.795 Searching for multidict==6.0.4
+#30 0.795 Best match: multidict 6.0.4
+#30 0.795 Adding multidict 6.0.4 to easy-install.pth file
+#30 0.796 
+#30 0.796 Using /usr/local/lib/python3.12/site-packages
+#30 0.797 Searching for pycparser==2.21
+#30 0.797 Best match: pycparser 2.21
+#30 0.797 Adding pycparser 2.21 to easy-install.pth file
+#30 0.798 
+#30 0.798 Using /usr/local/lib/python3.12/site-packages
+#30 0.798 Searching for importlib-resources==6.1.1
+#30 0.798 Best match: importlib-resources 6.1.1
+#30 0.798 Adding importlib-resources 6.1.1 to easy-install.pth file
+#30 0.799 
+#30 0.799 Using /usr/local/lib/python3.12/site-packages
+#30 0.799 Searching for Deprecated==1.2.14
+#30 0.799 Best match: Deprecated 1.2.14
+#30 0.799 Adding Deprecated 1.2.14 to easy-install.pth file
+#30 0.800 
+#30 0.800 Using /usr/local/lib/python3.12/site-packages
+#30 0.801 Searching for importlib-metadata==6.11.0
+#30 0.801 Best match: importlib-metadata 6.11.0
+#30 0.801 Adding importlib-metadata 6.11.0 to easy-install.pth file
+#30 0.802 
+#30 0.802 Using /usr/local/lib/python3.12/site-packages
+#30 0.802 Searching for smmap==5.0.1
+#30 0.802 Best match: smmap 5.0.1
+#30 0.802 Adding smmap 5.0.1 to easy-install.pth file
+#30 0.803 
+#30 0.803 Using /usr/local/lib/python3.12/site-packages
+#30 0.803 Searching for async-timeout==4.0.3
+#30 0.803 Best match: async-timeout 4.0.3
+#30 0.804 Adding async-timeout 4.0.3 to easy-install.pth file
+#30 0.804 
+#30 0.804 Using /usr/local/lib/python3.12/site-packages
+#30 0.805 Searching for sniffio==1.3.0
+#30 0.805 Best match: sniffio 1.3.0
+#30 0.805 Adding sniffio 1.3.0 to easy-install.pth file
+#30 0.806 
+#30 0.806 Using /usr/local/lib/python3.12/site-packages
+#30 0.806 Searching for wrapt==1.16.0
+#30 0.806 Best match: wrapt 1.16.0
+#30 0.806 Adding wrapt 1.16.0 to easy-install.pth file
+#30 0.807 
+#30 0.807 Using /usr/local/lib/python3.12/site-packages
+#30 0.807 Searching for zipp==3.17.0
+#30 0.807 Best match: zipp 3.17.0
+#30 0.807 Adding zipp 3.17.0 to easy-install.pth file
+#30 0.808 
+#30 0.808 Using /usr/local/lib/python3.12/site-packages
+#30 0.808 Finished processing dependencies for opal-server==0.7.4
+#30 DONE 0.9s
+
+#31 exporting to image
+#31 exporting layers 0.1s done
+#31 writing image sha256:dcaadbdd1b887ef0fba290e63ea6a0aefa1f58d2b364e301aa7209b9b7aef8c1 done
+#31 naming to docker.io/library/opal-server:local done
+#31 DONE 0.1s
+ Container docker-broadcast_channel-1  Created
+ Container docker-opal_server-1  Recreate
+ Container docker-opal_server-1  Recreated
+ Container docker-opal_client-1  Recreate
+ Container docker-opal_client-1  Recreated
+Attaching to docker-broadcast_channel-1, docker-opal_client-1, docker-opal_server-1
+docker-broadcast_channel-1  | 
+docker-broadcast_channel-1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+docker-broadcast_channel-1  | 
+docker-broadcast_channel-1  | 2024-01-10 23:59:35.391 UTC [1] LOG:  starting PostgreSQL 16.1 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+docker-broadcast_channel-1  | 2024-01-10 23:59:35.391 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+docker-broadcast_channel-1  | 2024-01-10 23:59:35.391 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+docker-broadcast_channel-1  | 2024-01-10 23:59:35.397 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+docker-broadcast_channel-1  | 2024-01-10 23:59:35.403 UTC [24] LOG:  database system was shut down at 2024-01-10 23:58:46 UTC
+docker-broadcast_channel-1  | 2024-01-10 23:59:35.408 UTC [1] LOG:  database system is ready to accept connections
+docker-opal_server-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PrivateKeyTypes instead
+docker-opal_server-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_server-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PublicKeyTypes instead
+docker-opal_server-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_server-1        | [2024-01-10 23:59:36 +0000] [1] [INFO] Starting gunicorn 20.1.0
+docker-opal_server-1        | [2024-01-10 23:59:36 +0000] [1] [INFO] Listening at: http://0.0.0.0:7002 (1)
+docker-opal_server-1        | [2024-01-10 23:59:36 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+docker-opal_server-1        | 2024-01-10 23:59:36.292 | WARNING  | __config__:when_ready:19 - Finished pre loading scopes...
+docker-opal_server-1        | [2024-01-10 23:59:36 +0000] [9] [INFO] Booting worker with pid: 9
+docker-opal_server-1        | [2024-01-10 23:59:36 +0000] [10] [INFO] Booting worker with pid: 10
+docker-opal_server-1        | [2024-01-10 23:59:36 +0000] [11] [INFO] Booting worker with pid: 11
+docker-opal_server-1        | [2024-01-10 23:59:36 +0000] [12] [INFO] Booting worker with pid: 12
+docker-opal_server-1        | [32m2024-01-10T23:59:36.350253+0000[0m | 9 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.350638+0000[0m | 9 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.367911+0000[0m | 10 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.368423+0000[0m | 10 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.398347+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Started server process [9][0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.398456+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.400117+0000[0m | 9 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.400713+0000[0m | 9 | [34mopal_server.server                      [0m|[1m INFO  | leadership lock acquired, leader pid: 9[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.401109+0000[0m | 9 | [34mopal_common.topics.publisher            [0m|[1m INFO  | started broadcaster keepalive task: topic is '__broadcast_session_keepalive__', interval is 3600 seconds[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.401420+0000[0m | 9 | [34mopal_server.policy.watcher.factory      [0m|[1m INFO  | Policy repo will be cloned to: /opal/regoclone/opal_repo_clone[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.401739+0000[0m | 9 | [34mopal_server.policy.watcher.task         [0m|[1m INFO  | Launching policy watcher[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.401852+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.402183+0000[0m | 9 | [34mopal_server.data.data_update_publisher  [0m|[1m INFO  | [9] Starting Polling Updates[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.402298+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Listening for incoming events from broadcast channel (first listener started)[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.402360+0000[0m | 9 | [34mopal_server.policy.watcher.task         [0m|[1m INFO  | listening on webhook topic: 'webhook'[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.402492+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': 'bdca744f3c764c228550a58ccfa142b5', 'subscriber_id': 'da42601e65354ff880cbf6d9157ef351', 'topic': 'webhook', 'callback': <bound method BasePolicyWatcherTask._on_webhook of <opal_server.policy.watcher.task.PolicyWatcherTask object at 0xffffba0bcf20>>, 'notifier_id': None}[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.406406+0000[0m | 9 | [34mopal_common.git.repo_cloner             [0m|[1m INFO  | Cloning repo from 'https://github.com/permitio/opal-example-policy-repo' to '/opal/regoclone/opal_repo_clone' (branch: 'master')[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.408478+0000[0m | 10 | [34mlogging                                 [0m|[1m INFO  | Started server process [10][0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.408589+0000[0m | 10 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.408839+0000[0m | 10 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.408995+0000[0m | 10 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.408874+0000[0m | 9 | [34mlogging                                 [0m|[1m INFO  | Starting broadcaster listener[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.416996+0000[0m | 11 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.417840+0000[0m | 11 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.426828+0000[0m | 12 | [34mopal_server.server                      [0m|[1m INFO  | OPAL was not provided with JWT encryption keys, cannot verify api requests![0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.427139+0000[0m | 12 | [34mopal_server.pubsub                      [0m|[1m INFO  | Initializing broadcaster for server<->server communication[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.446211+0000[0m | 11 | [34mlogging                                 [0m|[1m INFO  | Started server process [11][0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.446384+0000[0m | 11 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.446627+0000[0m | 11 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.447094+0000[0m | 11 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.454165+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | Started server process [12][0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.454267+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.454646+0000[0m | 12 | [34mopal_server.server                      [0m|[1m INFO  | *** OPAL Server Startup ***[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.454832+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.971492+0000[0m | 9 | [34mopal_common.git.repo_cloner             [0m|[1m INFO  | Clone succeeded[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.975420+0000[0m | 9 | [34mopal_common.sources.base_policy_source  [0m|[1m INFO  | Launching polling task, interval: 30 seconds[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:36.975711+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | Pulling changes from remote: 'origin'[0m
+docker-opal_client-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PrivateKeyTypes instead
+docker-opal_client-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_client-1        | /usr/local/lib/python3.12/site-packages/opal_common-0.7.4-py3.12.egg/opal_common/authentication/types.py:4: CryptographyDeprecationWarning: Use PublicKeyTypes instead
+docker-opal_client-1        |   from cryptography.hazmat.primitives.asymmetric.types import (
+docker-opal_client-1        | [2024-01-10 23:59:37 +0000] [1] [INFO] Starting gunicorn 20.1.0
+docker-opal_client-1        | [2024-01-10 23:59:37 +0000] [1] [INFO] Listening at: http://0.0.0.0:7000 (1)
+docker-opal_client-1        | [2024-01-10 23:59:37 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+docker-opal_client-1        | [2024-01-10 23:59:37 +0000] [17] [INFO] Booting worker with pid: 17
+docker-opal_server-1        | [32m2024-01-10T23:59:37.318647+0000[0m | 9 | [34mopal_common.sources.git_policy_source   [0m|[1m INFO  | No new commits: HEAD is at 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.072446+0000[0m | 17 | [34mopal_client.policy_store.opa_client     [0m|[1m INFO  | Authentication mode for policy store: PolicyStoreAuth.NONE[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.073881+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Loading FetcherProvider 'FastApiRpcFetchProvider' found at: <class 'opal_common.fetcher.providers.fastapi_rpc_fetch_provider.FastApiRpcFetchProvider'>[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.074004+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Loading FetcherProvider 'HttpFetchProvider' found at: <class 'opal_common.fetcher.providers.http_fetch_provider.HttpFetchProvider'>[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.074101+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Fetcher Register loaded[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.074297+0000[0m | 17 | [34mopal_client.callbacks.register          [0m|[1m INFO  | Callbacks register loaded[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.074443+0000[0m | 17 | [34mopal_client.client                      [0m|[1m INFO  | API authentication disabled (public encryption key was not provided)[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.090868+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Started server process [17][0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.090971+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Waiting for application startup.[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.091154+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Launching engine runner[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.091228+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Application startup complete.[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.091643+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine inline: opa run --server --addr=:8181 --authentication=off --authorization=off --log-level=info[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:38.114089+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Initializing server. [38;2;191;191;191m{"addrs": [":8181"], "diagnostic-addrs": [], "time": "2024-01-10T23:59:38Z"}[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.095336+0000[0m | 17 | [34mopal_client.engine.runner               [0m|[1m INFO  | Running policy engine initial start callbacks[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.096628+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Launching policy updater[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.097074+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Launching data updater[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.097239+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Subscribing to topics: ['policy:.'][0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.097627+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Subscribing to topics: ['policy_data'][0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.098118+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying to connect to Pub/Sub server - ws://opal_server:7002/ws[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.099108+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying server - ws://opal_server:7002/ws[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.120160+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying to connect to Pub/Sub server - ws://opal_server:7002/ws[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.120342+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Trying server - ws://opal_server:7002/ws[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.127620+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | Listening for incoming events from broadcast channel (first listener started)[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.142041+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '89a54dc5dae04966b7a489bfa8d12943', 'subscriber_id': '9690fd1410814144b721165e33be25d4', 'topic': '__EventNotifier_ALL_TOPICS__', 'callback': <bound method EventBroadcaster.__broadcast_notifications__ of <fastapi_websocket_pubsub.event_broadcaster.EventBroadcaster object at 0xffffba21bce0>>, 'notifier_id': None}[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.142414+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | Starting broadcaster listener[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.144270+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | ('172.18.0.4', 56360) - "WebSocket /ws" [accepted][0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.144430+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | Client connected[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.145278+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | connection open[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.145520+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | ('172.18.0.4', 56366) - "WebSocket /ws" [accepted][0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.145600+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | Client connected[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.146107+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | connection open[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.168848+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '493d6f2884434723bd41e7a96835bc72', 'subscriber_id': '18154eb74dfb479c84e3fd58e45b8c8c', 'topic': 'policy:.', 'callback': <function RpcEventServerMethods.subscribe.<locals>.callback at 0xffffb8f23ce0>, 'notifier_id': None}[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.170504+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | New subscription {'id': '126d13944a64419da3871f5916afb701', 'subscriber_id': '4015f49744a04b5d8934d8be5e855e5f', 'topic': 'policy_data', 'callback': <function RpcEventServerMethods.subscribe.<locals>.callback at 0xffffb8a149a0>, 'notifier_id': None}[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.172055+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Connected to server[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.172164+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Performing data configuration, reason: Initial load[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.172198+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Getting data-sources configuration from 'http://opal_server:7002/data/config'[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.172858+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Connected to server[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.173025+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Refetching policy code (full bundle)[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.173147+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetching policy bundle from http://opal_server:7002/policy[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.179690+0000[0m | 11 | [34mopal_server.data.api                    [0m|[1m INFO  | Serving source configuration[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.180110+0000[0m | 11 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:56394 - "GET /data/config HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.181169+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Triggering data update with id: 240b00b70e3b48a4a5b883f2bd15f928[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.181323+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Fetching policy data[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.181492+0000[0m | 17 | [34mopal_client.data.fetcher                [0m|[1m INFO  | Fetching data from url: http://opal_server:7002/policy-data[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.182488+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Connected to PubSub server ws://opal_server:7002/ws[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.183845+0000[0m | 12 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Using root manifest dir path (new-fashioned): '.'[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.184029+0000[0m | 12 | [34mopal_common.git.bundle_maker            [0m|[1m INFO  | Compiling manifest file .manifest[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.184009+0000[0m | 10 | [34mopal_server.data.api                    [0m|[33m[1mWARNING | Serving default all-data route, meaning DATA_CONFIG_SOURCES was not configured![0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.185059+0000[0m | 17 | [34mopal_client.data.updater                [0m|[1m INFO  | Saving fetched data to policy-store: source url='http://opal_server:7002/policy-data', destination path='/static'[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.187504+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Received request.    [38;2;153;153;153mPUT /v1/data/static[0m[1m[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.184314+0000[0m | 10 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:56404 - "GET /policy-data HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.187766+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Sent response.       [38;2;153;153;153mPUT /v1/data/static -> 204[0m[1m[0m
+docker-opal_server-1        | [32m2024-01-10T23:59:39.188227+0000[0m | 12 | [34mlogging                                 [0m|[1m INFO  | 172.18.0.4:56380 - "GET /policy?path=. HTTP/1.1" 200[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.188597+0000[0m | 17 | [34mopal_client.policy.fetcher              [0m|[1m INFO  | Fetched valid bundle, id: f10608f2d759f1982c1e0d9eb7048d771cea4f2f[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.188767+0000[0m | 17 | [34mopal_client.policy.updater              [0m|[1m INFO  | Got policy bundle with 2 rego files, 1 data files, commit hash: 'f10608f2d759f1982c1e0d9eb7048d771cea4f2f'[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.189990+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Received request.    [38;2;153;153;153mGET /v1/policies[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.190388+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Sent response.       [38;2;153;153;153mGET /v1/policies -> 200[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.191580+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Received request.    [38;2;153;153;153mPUT /v1/data[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.191883+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Sent response.       [38;2;153;153;153mPUT /v1/data -> 204[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.192981+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Received request.    [38;2;153;153;153mPUT /v1/policies/utils.rego[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.194070+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Sent response.       [38;2;153;153;153mPUT /v1/policies/utils.rego -> 200[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.195129+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Received request.    [38;2;153;153;153mPUT /v1/policies/rbac.rego[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.198860+0000[0m | 17 | [34mopal_client.engine.logger               [0m|[1m INFO  | Sent response.       [38;2;153;153;153mPUT /v1/policies/rbac.rego -> 200[0m[1m[0m
+docker-opal_client-1        | [32m2024-01-10T23:59:39.199315+0000[0m | 17 | [34mlogging                                 [0m|[1m INFO  | Connected to PubSub server ws://opal_server:7002/ws[0m
+Gracefully stopping... (press Ctrl+C again to force)
+Aborting on container exit...
+ Container docker-opal_client-1  Stopping
+ Container docker-opal_client-1  Stopped
+ Container docker-opal_server-1  Stopping
+ Container docker-opal_server-1  Stopped
+ Container docker-broadcast_channel-1  Stopping
+ Container docker-broadcast_channel-1  Stopped
+canceled
