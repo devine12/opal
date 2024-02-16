@@ -34,6 +34,7 @@ services:
       # after the initial sources are fetched, the client will subscribe only to update notifications sent by the server.
       - OPAL_DATA_CONFIG_SOURCES={"config":{"entries":[{"url":"http://opal_server:7002/policy-data","topics":["policy_data"],"dst_path":"/static"}]}}
       - OPAL_LOG_FORMAT_INCLUDE_PID=true
+      - OPAL_STATISTICS_ENABLED=true
     ports:
       # exposes opal server on the host machine, you can access the server at: http://localhost:7002
       - "7002:7002"
